@@ -98,7 +98,7 @@ package com.spring.client.qna.controller;
 	   @RequestMapping(value="/updateForm")
 	   public String updateForm(@ModelAttribute("data") QnaVO qvo, Model model) {
 	      log.info("updateForm 호출 성공");
-	      log.info("qna_no"= " + qvo.getQna_no());
+	      log.info("qna_no= " + qvo.getQna_no());
 	      
 	      QnaVO updateData = qnaService.updateForm(qvo);
 	      

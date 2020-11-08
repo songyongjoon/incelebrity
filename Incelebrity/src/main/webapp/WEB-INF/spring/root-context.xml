@@ -31,10 +31,4 @@
 		<property name="basePackage"><value>com.spring.**.**.dao</value></property>
 	</bean>
 	
-	<bean id="sqlSession" name="sqlSession"
-      class="org.mybatis.spring.SqlSessionTemplate"
-      destroy-method="clearCache">
-    <constructor-arg name="sqlSessionFactory"
-                     ref="sqlSessionFactory" />
-</bean>
 </beans>
