@@ -5,8 +5,8 @@
 
     <!-- 게시판 리스트 검색 부분 추가 -->
     <select id="noticeList" parameterType="notice" resultType="notice">
-        SELECT notice_no, notice_title, notice_name to_char(notice_writedate, 'YYYY-MM-DD')
-        as notice_writedate, notice_readcnt
+        SELECT notice_no, notice_title, notice_name to_char(notice_writeday, 'YYYY-MM-DD')
+        as notice_writeday, notice_readcnt
         FROM notice
         <where>
             <if test="search=='notice_title'">
@@ -42,7 +42,7 @@
 
     <select id="noticeDetail" parameterType="notice" resultType="notice">
        /* Board - noticeDetail */
-       SELECT notice_no, notice_name, notice_title, notice_content, TO_CHAR(notice_writedate, 'YYYY-MM-DD HH24:MI:SS') AS notice_writedate
+       SELECT notice_no, notice_name, notice_title, notice_content, TO_CHAR(notice_writeday, 'YYYY-MM-DD HH24:MI:SS') AS notice_writeday
        FROM notice
        WHERE notice_no = #{notice_no}
     </select>
