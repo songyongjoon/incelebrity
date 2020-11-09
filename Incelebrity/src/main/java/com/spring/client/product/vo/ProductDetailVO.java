@@ -1,6 +1,6 @@
 package com.spring.client.product.vo;
 
-public class ProductDetailVO extends ProductVO {
+public class ProductDetailVO {
     private int product_detail_no  = 0;
     private int product_detail_stock = 0;
     private String product_detail_color = "";

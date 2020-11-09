@@ -98,10 +98,6 @@
 		<form id="detailForm" name="detailForm">
 			<input type="hidden" id="b_num" name="b_num"/>
 		</form>
-		
-		<form id="detailForm">
-         <input type="hidden" id="b_num" name="b_num" />
-      </form>
       
       <%--===================== 검색 기능 시작 ====================== --%>
    <div id="boardSearch" class="text-right">

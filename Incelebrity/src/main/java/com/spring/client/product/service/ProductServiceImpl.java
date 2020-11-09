@@ -20,4 +20,12 @@ public class ProductServiceImpl implements ProductService {
 
         return result;
     }
+
+    @Override
+    public ProductVO productDetail(ProductVO productVO) {
+        ProductVO result = null;
+        result = productDAO.productDetail(productVO);
+
+        return null;
+    }
 }
