@@ -25,32 +25,8 @@
 <script>
 	$(function() {
 		
-		// 리스트에 노출된 회원 수 출력
-		$(document).ready(function() {
-			var total = ($("#memberList .active").length);
-			document.getElementById('total').innerHTML=total
-		})
-		
-		// 검색 후 검색대상과 검색 단어 출력
-		var word="<c:out value='${data.keyword}'/>";
-		var value="";
-		if(word!=""){
-			$("#keyword").val("<c:out value='${data.keyword}'/>");
-			$("#search").val("<c:out value='${data.search}'/>");
-			
-			if($("#search").val()!='member_id'){
-				//:contains()는 특정 텍스트를 포함한 요소반환
-				if($("#search").val()=='member_name') value = "#list tr td.goDetail";
-				console.log($(value+":contains('"+word+"')").html());
-				
-				$(value+":contains('"+word+"')").each(function() {
-					var regex = new RegExp(word,'gi');
-					$(this).html($(this).html().replace(regex,"<span class='required'>"+word+"</span>"));
-				});
-			}
-		}
-		
-		$(".goDetail").click(function() {
+		// 아이디 클릭시 회원정보 상세페이지
+		/* $(".goDetail").click(function() {
 			var b_num = $(this).parents("tr").attr("data-num");
 			$("#member_no").val(member_no);
 			console.log("글번호 " + member_no);
@@ -59,7 +35,7 @@
 				"action" : "/board/boardDetail"
 			});
 			$("#detailForm").submit();
-		});
+		}); */
 		
 		// 검색대상 변경시
 		$("#search").change(function() {
@@ -73,7 +49,7 @@
 		
 		// 검색버튼 클릭시 처리이벤트
 		$("#searchData").click(function() {
-			if($("#search").val()!="all"){
+			if($("#search").val()!="all" && $("#search").val()!="zero" && $("#search").val()!="one"){
 				if(!chkData("#keyword","검색어를")) return;
 			}
 			goPage();
@@ -84,12 +60,22 @@
 	function goPage(){
 		if($("#search").val()=="all"){
 			$("#keyword").val("");
+		}else if($("#search").val()=="zero"){
+			$("#keyword").val(0);
+		}else if($("#search").val()=="one"){
+			$("#keyword").val(1);
 		}
 		$("#f_search").attr({
 			"method" : "get",
 			"action" : "/admin/memberList"
 		});
 		$("#f_search").submit();
+	}
+	
+	// 페이징 함수
+	function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="admin/memberList?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
 </script>
 <meta charset="UTF-8">
@@ -119,10 +105,9 @@ body {
 		<input type="hidden" id="member_no" name="member_no" />
 		</form>
 		<!-- 리스트에 조회된 회원 수 출력 -->
-		<div class="text-right">등록된 회원 : <span id="total"></span>명</div>
+		<div class="text-right">등록된 회원 : <span>${paging.total}</span>명</div>
 		<%-- 검색기능 시작 --%>
-         <div style="width:53%" class="text-left"><input type="checkbox">&nbsp;휴면회원만 보기</div>
-         <div id="boardSearch" class="text-right" style="width:45%">
+         <div id="boardSearch" class="text-right">
          <form name="f_search" id="f_search" class="form-inline">
             <div class="form-group">
             <label>검색 조건</label>
@@ -130,6 +115,8 @@ body {
                <option value="all">전체보기</option>
                <option value="member_id">아이디</option>
                <option value="member_name">회원명</option>
+               <option value="zero">정상</option>
+               <option value="one">휴면</option>
             </select>
             <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요" class="form-control"/>
             <button type="button" id="searchData" class="btn btn-default">검색</button>
@@ -173,6 +160,24 @@ body {
 			</c:choose>
 			</tbody>
 		</table>
+		<div style="display: block; text-align: center;">		
+		<c:if test="${paging.startPage != 1 }">
+			<a href="/admin/memberList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a href="/admin/memberList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a href="/admin/memberList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+		</c:if>
+	</div>
 	</form>
 </body>
 </html>

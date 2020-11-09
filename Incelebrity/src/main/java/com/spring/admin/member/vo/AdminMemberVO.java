@@ -10,6 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminMemberVO extends CommonVO {
+	
+	public AdminMemberVO(int total, int nowPage, int cntPerPage, String search, String keyword) {
+		super(total,nowPage,cntPerPage,search,keyword);
+	}
 	private int member_no = 0;
 	private String member_id = "";
 	private String member_passwd = "";

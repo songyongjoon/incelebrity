@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.spring.admin.member.dao.AdminMemberDAO;
 import com.spring.admin.member.vo.AdminMemberVO;
-import com.spring.common.vo.CommonVO;
 
 import lombok.Setter;
 
@@ -22,5 +21,10 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		List<AdminMemberVO> list = null;
 		list = adminMemberDAO.memberList(vo);
 		return list;
+	}
+
+	@Override
+	public int countBoard() {
+		return adminMemberDAO.countBoard();
 	}
 }
