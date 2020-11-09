@@ -2,6 +2,7 @@
   <library name="Maven: com.oracle:ojdbc:6.0">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/com/oracle/ojdbc/6.0/ojdbc-6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../external/ojdbc6.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/com/oracle/ojdbc/6.0/ojdbc-6.0-javadoc.jar!/" />

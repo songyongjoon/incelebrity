@@ -92,10 +92,6 @@
 		<form id="detailForm" name="detailForm">
 			<input type="hidden" id="notice_no" name="notice_no"/>
 		</form>
-		
-		<form id="detailForm">
-         <input type="hidden" id="notice_no" name="notice_no" />
-      </form>
       
       <%--===================== 검색 기능 시작 ====================== --%>
    <div id="boardSearch" class="text-right">
@@ -135,8 +131,8 @@
 										<td>${notice.notice_no}</td>
 										<td class="goDetail text-left">${notice.notice_title}<c:if test="${notice.notice_readcnt>0}"><span class="cnt">[${notice.notice_readcnt}]</span></c:if></td>
 			
-										<td class="text-left">${notice.notice_writedate}</td>
-										<td class="name">${notice.notiece_name}</td>
+										<td class="text-left">${notice.notice_writeday}</td>
+										<td class="name">${notice.notice_name}</td>
 									</tr>
 								</c:forEach>
 							</c:when>
