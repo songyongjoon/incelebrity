@@ -1,16 +1,15 @@
 package com.spring.common.vo;
 
-//import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-//@Data
-@ToString
-@Setter
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CommonVO {
-	//조건 검색시 사용할 필드(검색대상, 검색단어)
+
+	// �˻� Ű���� �ʵ�
 	private String search = "";
 	private String keyword = "";
 

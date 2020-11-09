@@ -6,5 +6,7 @@
 		<typeAlias type="com.spring.client.notice.vo.NoticeVO" alias="notice"/>
 		<typeAlias type="com.spring.client.board.vo.BoardVO" alias="board"/>
 		<typeAlias type="com.spring.client.reply.vo.ReplyVO" alias="reply"/>
+		<typeAlias type="com.spring.client.member.vo.MemberVO" alias="member" />
+		<typeAlias type="com.spring.admin.member.vo.AdminMemberVO" alias="adminMember" />
 	</typeAliases>
 </configuration>

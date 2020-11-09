@@ -8,9 +8,9 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/">프로젝트 제목</a>
   </div>
   <div id="navbar" class="collapse navbar-collapse">
+    <a class="navbar-brand" href="/">프로젝트 제목</a>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/">Home</a></li>
       <li><a href="/board/boardList">게시판</a></li>
