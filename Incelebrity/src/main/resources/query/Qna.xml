@@ -71,4 +71,5 @@
 	 	DELETE FROM qna
 	 	WHERE qna_no = #{qna_no}
 	 </delete>
+
 </mapper>
