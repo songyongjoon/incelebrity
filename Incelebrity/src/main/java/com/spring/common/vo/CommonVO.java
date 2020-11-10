@@ -12,9 +12,16 @@ public class CommonVO {
 	private String search = "";
 	private String keyword = "";
 	
-	// 현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
-	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
-	private int cntPage = 5;
+	
+	private int nowPage; // 현재페이지
+	private int startPage;// 시작페이지
+	private int endPage; // 끝페이지
+	private int total; // 게시글 총 갯수
+	private int cntPerPage; // 페이지당 글 갯수
+	private int lastPage; // 마지막페이지
+	private int start; // SQL쿼리에 쓸 start
+	private int end; // SQL쿼리에 쓸 end
+	private int cntPage=5;
 
 	public CommonVO() {
 	}

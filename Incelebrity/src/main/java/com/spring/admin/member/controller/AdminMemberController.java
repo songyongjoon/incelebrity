@@ -33,6 +33,7 @@ public class AdminMemberController {
 		log.info("memberList 호출성공");
 
 		int total = adminMemberService.countBoard();
+		
 		if(nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "20";
@@ -48,5 +49,7 @@ public class AdminMemberController {
 
 		return "admin/memberList";
 	}
+	
+	/**/
 
 }
