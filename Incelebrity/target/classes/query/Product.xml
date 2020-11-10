@@ -15,8 +15,13 @@
         FROM product ORDER BY PRODUCT_NO desc
     </select>
 
-    <select id="productDetail" parameterType="product" resultType="product">
-        SELECT product_no, product_name, product_content_img, product_content, product_price
+    <select id="productData" parameterType="product" resultType="product">
+        SELECT product_no, product_name, PRODUCT_LIST_IMG, product_content_img, product_content, product_price
         FROM product where product_no = #{product_no}
+    </select>
+
+    <select id="productDetailData" parameterType="productDetail" resultType="productDetail">
+        select product_detail_no, PRODUCT_DETAIL_STOCK, PRODUCT_DETAIL_COLOR, PRODUCT_DETAIL_SIZE
+        from product_detail where product_no = #{product_no}
     </select>
 </mapper>

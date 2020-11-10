@@ -1,6 +1,7 @@
 package com.spring.client.product.service;
 
 import com.spring.client.product.dao.ProductDAO;
+import com.spring.client.product.vo.ProductDetailVO;
 import com.spring.client.product.vo.ProductVO;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductVO productDetail(ProductVO productVO) {
+    public ProductVO productData(ProductVO productVO) {
         ProductVO result = null;
-        result = productDAO.productDetail(productVO);
+        result = productDAO.productData(productVO);
 
-        return null;
+        return result;
+    }
+
+    @Override
+    public List<ProductDetailVO> productDetailData(ProductDetailVO productDetailVO) {
+        List<ProductDetailVO> result = null;
+        result = productDAO.productDetailData(productDetailVO);
+
+        return result;
     }
 }

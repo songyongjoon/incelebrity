@@ -25,7 +25,6 @@
             $(".goDetail").click(function(){
                 var product_no = $(this).parents("td").attr("data-num");
                 $("#product_no").val(product_no);
-                console.log("상품 번호: " + product_no);
                 //상세 페이지로 이동하기 위해  form 추가(id: detailForm)
                 $("#detailForm").attr({
                     "method" : "get",
@@ -66,9 +65,6 @@
                 </c:otherwise>
             </c:choose>
         </table>
-    </div>
-    <div class="text-right">
-        <input type="button" value="글쓰기" id="insertFormBtn" class="btn btn-success"/>
     </div>
 </div>
 </body>

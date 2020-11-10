@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,21 +28,29 @@
 				<table class="table table-bordered">
 					<tr>
 						<td>
-							${detail.product_name}
+							<img src='${productData.product_list_img}' />
+							<img src="/resources/image/top01.jpg" />
 						</td>
 						<td>
-							${detail.product_price}
+							${productData.product_name}
+							${productData.product_price}
+								<select>
+							<c:forEach var="product" items="${productDetailData}" varStatus="status">
+								<option>${product.product_detail_color} / ${product.product_detail_size} / 남은수량 : ${product.product_detail_stock}</option>
+							</c:forEach>
+								</select>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							${detail.product_content}
-							${detail.product_content_img}
+							${productData.product_content}
+							<img src="${productData.product_content_img}" />
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<jsp:include page="reply.jsp" />
+							리플 나오는 곳
+<%--							<jsp:include page="reply.jsp" />--%>
 						</td>
 					</tr>
 				</table>

@@ -2,6 +2,7 @@ package com.spring.client.product.controller;
 
 import com.spring.client.member.vo.MemberVO;
 import com.spring.client.product.service.ProductService;
+import com.spring.client.product.vo.ProductDetailVO;
 import com.spring.client.product.vo.ProductVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -32,24 +33,25 @@ public class ProductController {
     }
 
     @RequestMapping(value="/productDetail")
-    public String productDetail(@ModelAttribute("data") ProductVO productVO, Model model, HttpServletRequest req){
+    public String productDetail(@ModelAttribute("data") ProductVO productVO, ProductDetailVO productDetailVO, Model model, HttpSession session){
         log.info("productDetail 호출 성공");
 
         String url = "";
         MemberVO member_no = null;
 
-        HttpSession session = req.getSession();
-
         member_no = (MemberVO)session.getAttribute("loginMember");
-        log.info("member : " + member_no);
 
         if(member_no != null){
-            ProductVO detail = productService.productDetail(productVO);
-            model.addAttribute("detail", detail);
+            ProductVO productData = productService.productData(productVO);
+            List<ProductDetailVO> productDetailData = productService.productDetailData(productDetailVO);
+            model.addAttribute("productData", productData);
+            model.addAttribute("productDetailData", productDetailData);
+            log.info("detail : " + productData);
+            log.info("detail : " + productDetailData);
             url = "product/productDetail";
         }
         else{
-            url = "product/productList";
+            url = "redirect:/product/productList";
         }
 
         return url;

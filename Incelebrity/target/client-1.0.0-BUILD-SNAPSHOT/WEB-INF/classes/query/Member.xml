@@ -3,16 +3,7 @@
 <mapper namespace="com.spring.client.member.dao.MemberDAO">
 
 	<select id="getUserOne" parameterType="member" resultType="member">
-<!--		SELECT NVL((-->
-<!--		SELECT 1-->
-<!--		FROM member-->
-<!--		WHERE member_id = #{member_id}-->
-<!--			<if test="member_passwd != ''">-->
-<!--				and member_passwd = #{member_passwd}-->
-<!--			</if>-->
-<!--		), 0) as state-->
-<!--		FROM dual-->
-		select member_no, member_id from member where member_id = #{member_id}
+		select member_no, member_id, MEMBER_STATE from member where member_id = #{member_id}
 			<if test="member_passwd != ''">
 				and member_passwd = #{member_passwd}
 			</if>
