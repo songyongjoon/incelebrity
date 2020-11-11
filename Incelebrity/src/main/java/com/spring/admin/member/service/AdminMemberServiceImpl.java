@@ -27,4 +27,18 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	public int countBoard() {
 		return adminMemberDAO.countBoard();
 	}
+
+	@Override
+	public AdminMemberVO memberDetail(AdminMemberVO vo) {
+		AdminMemberVO detail = null;
+		detail = adminMemberDAO.memberDetail(vo);
+		return detail;
+	}
+
+	@Override
+	public int memberUpdate(AdminMemberVO vo) {
+		int result = 0;
+		result = adminMemberDAO.memberUpdate(vo);
+		return result;
+	}
 }

@@ -6,8 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.admin.member.service.AdminMemberService;
 import com.spring.admin.member.vo.AdminMemberVO;
@@ -50,6 +52,34 @@ public class AdminMemberController {
 		return "admin/memberList";
 	}
 	
-	/**/
-
+	/* 회원정보 상세조회 */
+	@GetMapping("/memberDetail")
+	public String memberDetail(@ModelAttribute("data") AdminMemberVO vo, Model model,
+			HttpSession session) {
+		log.info("memberDetail 호출성공");
+		
+		AdminMemberVO detail = adminMemberService.memberDetail(vo);
+		model.addAttribute("detail", detail);
+		
+		return "admin/memberDetail";
+	}
+	
+	/* 회원상태 수정 */
+	@PostMapping("/memberUpdate")
+	public String memberUpdate(@ModelAttribute AdminMemberVO vo, RedirectAttributes ras) {
+		log.info("memberUpdate 호출성공");
+		
+		int result =0;
+		String url="";
+		result = adminMemberService.memberUpdate(vo);
+		ras.addFlashAttribute("data",vo);
+		
+		if(result == 1) {
+			url = "/admin/memberList";
+		}else {
+			url = "/admin/memberDetail?member_no="+vo.getMember_no();
+		}
+		return "redirect:" + url;
+		
+	}
 }

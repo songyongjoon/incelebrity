@@ -2,36 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.admin.member.dao.AdminMemberDAO">
 
-<!-- 총 게시글 갯수 출력 -->
-<select id="countBoard" resultType="int">
-	SELECT COUNT(*) FROM member
-</select>
-
-<!-- 페이징 처리해서 조회 -->
-<select id="memberList" resultType="member">
-	SELECT * 
-		FROM (
-			SELECT ROWNUM RN, A.* 
-				FROM (
-						SELECT * 
-						FROM member
-<where>
-<if test="search=='member_id'">
-<![CDATA[member_id LIKE '%' || #{keyword} || '%']]>
-</if>
-<if test="search=='member_name'">
-<![CDATA[member_name LIKE '%' || #{keyword} || '%']]>
-</if>
-<if test="search=='zero'">
-<![CDATA[member_state LIKE '%' || #{keyword} || '%']]>
-</if>
-<if test="search=='one'">
-<![CDATA[member_state LIKE '%' || #{keyword} || '%']]>
-</if>
-</where>
-						ORDER BY member_no DESC 
-						) A
-				)
-	WHERE RN BETWEEN #{start} AND #{end}
-</select>
+	<!-- 총 게시글 갯수 출력 -->
+	<select id="countBoard" resultType="int">
+		SELECT COUNT(*) FROM member
+	</select>
+	
+	<!-- 페이징 처리해서 조회 -->
+	<select id="memberList" resultType="adminMember">
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+							SELECT * 
+							FROM member
+	<where>
+	<if test="search=='member_id'">
+	<![CDATA[member_id LIKE '%' || #{keyword} || '%']]>
+	</if>
+	<if test="search=='member_name'">
+	<![CDATA[member_name LIKE '%' || #{keyword} || '%']]>
+	</if>
+	<if test="search=='zero'">
+	<![CDATA[member_state LIKE '%' || #{keyword} || '%']]>
+	</if>
+	<if test="search=='one'">
+	<![CDATA[member_state LIKE '%' || #{keyword} || '%']]>
+	</if>
+	</where>
+							ORDER BY member_no DESC 
+							) A
+					)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 멤버 상세페이지 -->
+	<select id="memberDetail" parameterType="adminMember" resultType="adminMember">
+		select m.member_no, m.member_id, m.member_name, m.member_address, m.member_email, m.member_phone, TO_CHAR(member_birth, 'YYYY-MM-DD') AS member_birth,
+		md.member_detail_writeday, md.member_detail_loginday, md.member_detail_modday, m.member_state
+		from member m, member_detail md
+		where m.member_no = md.member_no
+		and m.member_no = #{member_no}
+	</select>
+	
+	<!-- 멤버상태 수정 -->
+	<update id="memberUpdate" parameterType="adminMember">
+		UPDATE member SET member_state = #{member_state} WHERE member_no = #{member_no}
+	</update>
 </mapper>

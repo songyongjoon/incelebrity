@@ -26,16 +26,17 @@
 	$(function() {
 		
 		// 아이디 클릭시 회원정보 상세페이지
-		/* $(".goDetail").click(function() {
-			var b_num = $(this).parents("tr").attr("data-num");
+		$(".goDetail").click(function() {
+			var member_no = $(this).parents("tr").attr("data-num");
 			$("#member_no").val(member_no);
-			console.log("글번호 " + member_no);
+			console.log("회원번호" + member_no);
+		
 			$("#detailForm").attr({
 				"method" : "get",
-				"action" : "/board/boardDetail"
+				"action" : "/admin/memberDetail"
 			});
 			$("#detailForm").submit();
-		}); */
+		}); 
 		
 		// 검색대상 변경시
 		$("#search").change(function() {
@@ -181,7 +182,6 @@ body {
 		<c:if test="${paging.endPage != paging.lastPage}">
 			<a href="/admin/memberList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&search=${paging.search}&keyword=${paging.keyword}">&gt;</a>
 		</c:if>
-		<span>end : ${paging.endPage} last : ${paging.lastPage} total : ${paging.total}</span>
 	</div>
 	</form>
 </body>
