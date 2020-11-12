@@ -13,9 +13,10 @@
     <a class="navbar-brand" href="/">프로젝트 제목</a>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/">Home</a></li>
-      <li><a href="/board/boardList">게시판</a></li>
+      <li><a href="/notice/noticeList">공지사항</a></li>
       <li><a href="/gallery/galleryList">갤러리</a></li>
-      <li><a href="/member/login">로그인</a></li>
+      <li><a href="/product/productList">상품</a></li>
+      <li><a href="/member/loginForm">로그인</a></li>
       <li><a href="/multiple/multipleBoardList">게시판(다중첨부파일)</a></li>
       <li><a href="/admin/memberList">회원관리</a></li>
       <!-- 
