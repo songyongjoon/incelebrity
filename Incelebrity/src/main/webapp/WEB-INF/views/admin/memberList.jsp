@@ -50,7 +50,7 @@
 		
 		// 검색버튼 클릭시 처리이벤트
 		$("#searchData").click(function() {
-			if($("#search").val()!="all" && $("#search").val()!="zero" && $("#search").val()!="one"){
+			if($("#search").val()!="all" && $("#search").val()!="zero" && $("#search").val()!="one" && $("#search").val()!="two"){
 				if(!chkData("#keyword","검색어를")) return;
 			}
 			goPage();
@@ -65,6 +65,8 @@
 			$("#keyword").val(0);
 		}else if($("#search").val()=="one"){
 			$("#keyword").val(1);
+		}else if($("#search").val()=="two"){
+			$("#keyword").val(2);
 		}
 		$("#f_search").attr({
 			"method" : "get",
@@ -118,6 +120,7 @@ body {
                <option value="member_name">회원명</option>
                <option value="zero">정상</option>
                <option value="one">휴면</option>
+               <option value="two">탈퇴</option>
             </select>
             <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요" class="form-control"/>
             <button type="button" id="searchData" class="btn btn-default">검색</button>
@@ -147,8 +150,12 @@ body {
 							<c:when test="${member.member_state eq 0}">
 							정상
 							</c:when>
-							<c:otherwise>
-							휴면</c:otherwise>
+							<c:when test="${member.member_state eq 1}">
+							휴면
+							</c:when>
+							<c:when test="${member.member_state eq 2}">
+							탈퇴
+							</c:when>
 							</c:choose></td>
 						</tr>
 					</c:forEach>

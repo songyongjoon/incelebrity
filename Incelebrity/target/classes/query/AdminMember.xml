@@ -28,6 +28,9 @@
 	<if test="search=='one'">
 	<![CDATA[member_state LIKE '%' || #{keyword} || '%']]>
 	</if>
+	<if test="search=='two'">
+	<![CDATA[member_state LIKE '%' || #{keyword} || '%']]>
+	</if>
 	</where>
 							ORDER BY member_no DESC 
 							) A
@@ -38,7 +41,7 @@
 	<!-- 멤버 상세페이지 -->
 	<select id="memberDetail" parameterType="adminMember" resultType="adminMember">
 		select m.member_no, m.member_id, m.member_name, m.member_address, m.member_email, m.member_phone, TO_CHAR(member_birth, 'YYYY-MM-DD') AS member_birth,
-		md.member_detail_writeday, md.member_detail_loginday, md.member_detail_modday, m.member_state
+		TO_CHAR(member_detail_writeday, 'YYYY-MM-DD') AS member_detail_writeday, TO_CHAR(member_detail_loginday, 'YYYY-MM-DD') AS member_detail_loginday, md.member_detail_modday, m.member_state
 		from member m, member_detail md
 		where m.member_no = md.member_no
 		and m.member_no = #{member_no}
