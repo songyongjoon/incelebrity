@@ -58,7 +58,13 @@
 			$("#reg_btn").click(function(){
 				location.href = "/member/signUpForm";
 			});
+			$("#find_pwd_btn").click(function(){
+				location.href = "/member/findPwd/findPwdForm";
+			});
+			
 		});
+		
+		
 	</script>
 </head>
 <body>
@@ -66,7 +72,7 @@
 	<c:when test="${loginMember eq null}">
 		<form id="login_frm" name="login_frm">
 			<div>
-				<span>로그인</span>
+				<span>아이디</span>
 				<input type="text" id="member_id" name="member_id" />
 			</div>
 			<div>
@@ -78,6 +84,7 @@
 				<input type="button" id="login_btn" name="login_btn" value="로그인" />
 				<input type="reset" id="reset_btn" name="reset_btn" value="취소" />
 				<input type="button" id="reg_btn" name="reg_btn" value="회원가입" />
+				<input type="button" id="find_pwd_btn" name="find_pwd_btn" value="비밀번호찾기" />
 			</div>
 		</form>
 	</c:when>

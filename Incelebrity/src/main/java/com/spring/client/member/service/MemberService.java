@@ -1,7 +1,5 @@
 package com.spring.client.member.service;
 
-import java.util.List;
-
 import com.spring.client.member.vo.MemberVO;
 
 public interface MemberService {

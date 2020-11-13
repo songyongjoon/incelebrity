@@ -34,18 +34,18 @@
 			if (confirm("저장하시겠습니까?") == true) {
 				$("#memberDetailForm").attr({
 					"method" : "POST",
-					"action" : "/admin/memberUpdate"
+					"action" : "/admin/member/memberUpdate"
 				})
 				$("#memberDetailForm").submit();
 			} else {
 				alert("취소되었습니다.");
-				location.href = "/admin/memberDetail?member_no="+${detail.member_no};
+				location.href = "/admin/member/memberDetail?member_no="+${detail.member_no};
 			}
 		});
 		
 		// 목록버튼 제어
 		$("#ListBtn").click(function() {
-			location.href="/admin/memberList"
+			location.href="/admin/member/memberList"
 		});
 	});
 </script>
@@ -136,6 +136,9 @@ body {
 							<c:choose>
 								<c:when test="${detail.member_state eq 0}">
 								정상
+								</c:when>
+								<c:when test="${detail.member_state eq 2}">
+								탈퇴
 								</c:when>
 								<c:otherwise>
 									 <select  id="member_state" name="member_state" class="form-control" style="width:100px;">

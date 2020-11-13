@@ -23,16 +23,16 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 	private MemberService memberService;
 
-	@RequestMapping(value="/loginForm")
-	public String loginForm(@ModelAttribute("data") MemberVO memberVO){
+	@RequestMapping(value = "/loginForm")
+	public String loginForm(@ModelAttribute("data") MemberVO memberVO) {
 		log.info("loginForm �샇異� �꽦怨�");
 
 		return "member/loginForm";
 	}
 
-	@RequestMapping(value="/memberLogin")
+	@RequestMapping(value = "/memberLogin")
 	@ResponseBody
-	public String login(@ModelAttribute("data") MemberVO memberVO, HttpServletRequest req){
+	public String login(@ModelAttribute("data") MemberVO memberVO, HttpServletRequest req) {
 		log.info("memberLogin �샇異� �꽦怨�");
 
 		HttpSession session = req.getSession();
@@ -42,17 +42,15 @@ public class MemberController {
 
 		memberIdCheck = memberService.getUserOne(memberVO);
 
-		if(memberIdCheck == 0){
+		if (memberIdCheck == 0) {
 			result = "fail";
-		}
-		else if(memberIdCheck == 1){
+		} else if (memberIdCheck == 1) {
 			loginCheck = memberService.memberLogin(memberVO);
 
-			if(loginCheck == 1){
+			if (loginCheck == 1) {
 				session.setAttribute("loginMember", memberVO);
 				result = "success";
-			}
-			else{
+			} else {
 				result = "fail";
 			}
 		}
@@ -60,14 +58,14 @@ public class MemberController {
 		return result;
 	}
 
-	@RequestMapping(value="/signUpForm")
+	@RequestMapping(value = "/signUpForm")
 	public String signUpForm(@ModelAttribute("data") MemberVO memberVO) {
 		log.info("signUpForm �샇異� �꽦怨�");
 
 		return "member/signUpForm";
 	}
 
-	@RequestMapping(value="/memberSignUp")
+	@RequestMapping(value = "/memberSignUp")
 	public String signUp(@ModelAttribute("data") MemberVO memberVO, Model model) {
 		log.info("memberSignUp �샇異� �꽦怨�");
 
@@ -76,19 +74,18 @@ public class MemberController {
 
 		result = memberService.memberSignUp(memberVO);
 
-		if(result == 1){
-			url = "/member/loginForm"; //�굹以묒뿉 �쉶�썝媛��엯 �셿猷� �럹�씠吏��룄 異붽� �븷 寃�
-		}
-		else{
+		if (result == 1) {
+			url = "/member/loginForm"; // �굹以묒뿉 �쉶�썝媛��엯 �셿猷� �럹�씠吏��룄 異붽� �븷 寃�
+		} else {
 			url = "/member/memberSignUp";
 		}
 
 		return "redirect:" + url;
 	}
 
-	@RequestMapping(value="/getUserOne", method = RequestMethod.POST)
+	@RequestMapping(value = "/getUserOne", method = RequestMethod.POST)
 	@ResponseBody
-	public String getUserOne(@ModelAttribute("data") MemberVO memberVO){
+	public String getUserOne(@ModelAttribute("data") MemberVO memberVO) {
 		log.info("getUserOne �샇異� �꽦怨�");
 
 		int value = 0;
@@ -96,10 +93,9 @@ public class MemberController {
 
 		value = memberService.getUserOne(memberVO);
 
-		if(value == 1) {
+		if (value == 1) {
 			result = "fail";
-		}
-		else{
+		} else {
 			result = "success";
 		}
 
@@ -108,8 +104,8 @@ public class MemberController {
 		return result;
 	}
 
-	@RequestMapping(value="/memberLogout")
-	public String memberLogout(HttpSession session){
+	@RequestMapping(value = "/memberLogout")
+	public String memberLogout(HttpSession session) {
 		session.invalidate();
 
 		return "member/loginForm";

@@ -19,7 +19,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/admin/*")
+@RequestMapping("/admin/member/*")
 @AllArgsConstructor
 public class AdminMemberController {
 
@@ -49,7 +49,7 @@ public class AdminMemberController {
 		model.addAttribute("paging", vo);
 		model.addAttribute("memberList", adminMemberService.memberList(vo));
 
-		return "admin/memberList";
+		return "admin/member/memberList";
 	}
 	
 	/* 회원정보 상세조회 */
@@ -61,7 +61,7 @@ public class AdminMemberController {
 		AdminMemberVO detail = adminMemberService.memberDetail(vo);
 		model.addAttribute("detail", detail);
 		
-		return "admin/memberDetail";
+		return "admin/member/memberDetail";
 	}
 	
 	/* 회원상태 수정 */
@@ -75,9 +75,9 @@ public class AdminMemberController {
 		ras.addFlashAttribute("data",vo);
 		
 		if(result == 1) {
-			url = "/admin/memberList";
+			url = "/admin/member/memberList";
 		}else {
-			url = "/admin/memberDetail?member_no="+vo.getMember_no();
+			url = "/admin/member/memberDetail?member_no="+vo.getMember_no();
 		}
 		return "redirect:" + url;
 		

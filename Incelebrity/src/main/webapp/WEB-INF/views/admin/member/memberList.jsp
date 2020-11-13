@@ -33,7 +33,7 @@
 		
 			$("#detailForm").attr({
 				"method" : "get",
-				"action" : "/admin/memberDetail"
+				"action" : "/admin/member/memberDetail"
 			});
 			$("#detailForm").submit();
 		}); 
@@ -70,7 +70,7 @@
 		}
 		$("#f_search").attr({
 			"method" : "get",
-			"action" : "/admin/memberList"
+			"action" : "/admin/member/memberList"
 		});
 		$("#f_search").submit();
 	}
@@ -78,10 +78,9 @@
 	// 페이징 함수
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href="admin/memberList?nowPage=${paging.nowPage}&cntPerPage="+sel;
+		location.href="admin/member/memberList?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
 </script>
-<meta charset="UTF-8">
 <style>
 div {
 	width: 100%;
@@ -170,7 +169,7 @@ body {
 		</table>
 		<div id="page" style="display: block; margin-bottom : 100px; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">
-			<a href="/admin/memberList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&search=${paging.search}&keyword=${paging.keyword}">&lt;</a>
+			<a href="/admin/member/memberList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&search=${paging.search}&keyword=${paging.keyword}">&lt;</a>
 		</c:if>
 		<c:choose>
 				<c:when test="${not empty memberList}">
@@ -180,14 +179,14 @@ body {
 					<b>${p }</b>
 				</c:when>
 				<c:when test="${p != paging.nowPage }">
-					<a href="/admin/memberList?nowPage=${p }&cntPerPage=${paging.cntPerPage}&search=${paging.search}&keyword=${paging.keyword}">${p }</a>
+					<a href="/admin/member/memberList?nowPage=${p }&cntPerPage=${paging.cntPerPage}&search=${paging.search}&keyword=${paging.keyword}">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		</c:when>
 		</c:choose>
 		<c:if test="${paging.endPage != paging.lastPage}">
-			<a href="/admin/memberList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&search=${paging.search}&keyword=${paging.keyword}">&gt;</a>
+			<a href="/admin/member/memberList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&search=${paging.search}&keyword=${paging.keyword}">&gt;</a>
 		</c:if>
 	</div>
 	</form>
