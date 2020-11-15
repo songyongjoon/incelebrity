@@ -8,10 +8,38 @@
 		FROM spring_board
 		ORDER BY b_num desc
 	</select>-->
-	
-	<!-- 게시판 리스트 검색 부분 추가 -->
+
+<!-- 총 게시글 갯수 출력 -->
+<select id="countBoard" resultType="int">
+   SELECT COUNT(*) FROM qna
+</select>
+	<!-- 페이징 처리해서 조회 -->
+	   <select id="selectBoard" resultType="qna">
+	      SELECT * 
+	         FROM (
+	            SELECT ROWNUM RN, A.* 
+	               FROM (
+	                     SELECT * 
+	                     FROM qna
+	   <where>
+	   <if test="search=='qna_title'">
+		        		<![CDATA[qna_title LIKE '%'|| #{keyword} || '%']]>
+		        	</if>
+		        	<if test="search=='qna_content'">
+		        		<![CDATA[notice_content LIKE '%'|| #{keyword} || '%']]>
+		        	</if>
+		        	<if test="search=='qna_name'">
+		        		<![CDATA[notice_name LIKE '%'|| #{keyword} || '%']]>
+		        	</if>
+	   </where>
+	                     ORDER BY qna_no DESC 
+	                     ) A
+	               )
+	      WHERE RN BETWEEN #{start} AND #{end}
+	   </select>
+	<!-- 게시판 리스트 검색 부분 추가
 	<select id="qnaList" parameterType="qna" resultType="qna">
-		SELECT qna_no, qna_name, qna_title, to_char(qna_writeday, 'YYYY-MM-DD') as qna_writeday,
+		SELECT qna_no, qna_name, qna_title, to_char(qna_writeday, 'YYYY-MM-DD') as qna_writeday
 		FROM qna
 		<where>
 			<if test="search=='qna_title'">
@@ -25,7 +53,7 @@
 			</if>
 		</where>
 		ORDER BY qna_no desc
-	</select>
+	</select> -->
 	
 	<!-- 게시물 등록1
 	<insert id="boardInsert" parameterType="board">
@@ -41,8 +69,8 @@
 	 		SELECT qna_seq.nextval from dual
 	 	</selectKey>
 	 	
-	 	INSERT INTO qna(qna_no, qna_name, qna_title, qna_content)
-	 	VALUES(#{qna_no}, #{qna_name}, #{qna_title}, #{qna_content})
+	 	INSERT INTO qna(qna_no, qna_name, qna_title, qna_content, qna_writeday, member_no)
+	 	VALUES(#{qna_no}, #{qna_name}, #{qna_title}, #{qna_content}, sysdate, 2)
 	 </insert>
 	 
 	 <select id="qnaDetail" parameterType="qna" resultType="qna">

@@ -25,10 +25,9 @@
 				//저장 버튼 클릭 시 처리 이벤트
 				$("#qnaInsertBtn").click(function(){
 					//공백 여부 체크
-					if(!chkData("#b_name", "작성자를")) return;
+					if(!chkData("#qna_name", "작성자를")) return;
 					else if(!chkData("#qna_title", "글제목을")) return;
 					else if(!chkData("#qna_content", "글내용을")) return;
-					else if(!chkData("#qna_pwd", "비밀번호를")) return;
 					else{
 						$("#f_writeForm").attr({
 							"method" : "post",//get 방식은 길이에 제한이 있으므로 post 방식을 쓴다.

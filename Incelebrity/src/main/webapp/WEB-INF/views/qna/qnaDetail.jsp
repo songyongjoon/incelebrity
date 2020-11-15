@@ -31,8 +31,10 @@
 						dataType : "text",
 						error : function() {
 							alert('시스템 오류. 관리자에게 문의 하세요.');
+						},
+						success : function(detail){
+							
 						}
-						success 
 					});
 				});
 					

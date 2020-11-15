@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.client.qna.dao.QnaDAO;
 import com.spring.client.qna.vo.QnaVO;
-
+import com.spring.common.vo.CommonVO;
 
 import lombok.Setter;
 
@@ -19,13 +19,7 @@ public class QnaServiceImpl implements QnaService {
       private QnaDAO qnaDAO;
       
       
-      //글목록
-      @Override
-      public List<QnaVO> qnaList(QnaVO qvo){
-         List<QnaVO> list = null;
-         list = qnaDAO.qnaList(qvo);
-         return list;
-      }
+     
       
       //글쓰기
       @Override
@@ -67,6 +61,15 @@ public class QnaServiceImpl implements QnaService {
          return result;
       }
       
+      @Override
+	   public int countBoard() {
+	      return qnaDAO.countBoard();
+	   }
+
+	   @Override
+	   public List<QnaVO> selectBoard(CommonVO cvo) {
+	      return qnaDAO.selectBoard(cvo);
+	   }
       
    }
 

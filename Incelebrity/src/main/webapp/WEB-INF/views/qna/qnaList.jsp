@@ -29,10 +29,10 @@
 					$("#keyword").val("<c:out value='${data.keyword}'/>");
 					$("#search").val("<c:out value='${data.search}'/>");
 					
-					if($("search").val()!='b_content'){
+					if($("search").val()!='qna_content'){
 						//:contains()는 특정 텍스트를 포함한 요소반환
-						if($("#search").val()=='b_title')value = "#list tr td.goDetail";
-						else if($("#search").val()=='b_name')value = "#list tr td.name";
+						if($("#search").val()=='qna_title')value = "#list tr td.goDetail";
+						else if($("#search").val()=='qna_name')value = "#list tr td.name";
 						console.log($(value+":contains('"+word+"')").html());
 						
 						$(value+":contains('"+word+"')").each(function() {
@@ -78,6 +78,12 @@
 					});
 					$("#detailForm").submit();
 				});
+				
+				$("paginate_button a").click(function(e) {
+					e.preventDefault();
+					$("#f_search").find("input[name='[ageNum']").val($(this).attr("href"));
+					goPage();
+				});
 			});
 			
 			//검색을 위한 실질적인 처리 함수
@@ -87,10 +93,15 @@
 				}
 				$("#f_search").attr({
 					"method" : "get",
-					"action" : "/qna/qnaList"
+					"action" : "/qna/qnaList1"
 				});
 				$("#f_search").submit();
 			}
+			
+	    	function selChange() {
+	    	      var sel = document.getElementById('cntPerPage').value;
+	    	      location.href="qnaList?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	    	   }
 			
 		</script>
 	</head>
@@ -118,9 +129,9 @@
             <button type="button" class="btn btn-primary btn-sm" id="searchData">검색</button>
          </div>
       </form>
-   </div>      
+   </div>  
+      
    <%--======================검색 기능 종료====================== --%>
-   
 		
 		<div class="container">
 			<div id="boardList">
@@ -135,8 +146,8 @@
 					</thead>
 					<tbody id="list" class="table-striped">
 						<c:choose>
-							<c:when test="${not empty qnaList}">
-								<c:forEach var="board" items="${qnaList}" varStatus="status">
+							<c:when test="${not empty viewAll}">
+								<c:forEach var="qna" items="${viewAll}" varStatus="status">
 									<tr class="text-center" data-num="${qna.qna_no}">
 										<td>${board.b_num}</td>
 										<td class="goDetail text-left">${qna.qna_title}</td>
@@ -159,5 +170,23 @@
 				<input type="button" value="글쓰기" id="insertFormBtn" class="btn btn-success"/>
 			</div>
 		</div> 
+		 <div style="display: block; margin-bottom: 100px; text-align: center;">      
+      <c:if test="${paging.startPage != 1 }">
+         <a href="/qna/qnaList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+      </c:if>
+      <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+         <c:choose>
+            <c:when test="${p == paging.nowPage }">
+               <b>${p }</b>
+            </c:when>
+            <c:when test="${p != paging.nowPage }">
+               <a href="/qna/qnaList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+            </c:when>
+         </c:choose>
+      </c:forEach>
+      <c:if test="${paging.endPage != paging.lastPage}">
+         <a href="/qna/qnaList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+      </c:if>
+   </div>
 	</body>
 </html>
