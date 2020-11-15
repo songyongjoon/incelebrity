@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class AdminMainController {
-    final static Logger logger = LoggerFactory.getLogger(AdminMainController.class);
-
-    @RequestMapping(value="/admin", method= RequestMethod.GET)
-    public String main(){
-        return "main";
-    }
+	final static Logger logger = LoggerFactory.getLogger(AdminMainController.class);
+	
+	@RequestMapping(value="/admin", method = RequestMethod.GET)
+	public String main() {
+		return "main";
+	}
 }

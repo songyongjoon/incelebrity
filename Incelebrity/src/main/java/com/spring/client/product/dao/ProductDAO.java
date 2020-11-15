@@ -1,9 +1,9 @@
 package com.spring.client.product.dao;
 
-import com.spring.common.vo.ProductDetailVO;
-import com.spring.client.product.vo.ProductVO;
-
 import java.util.List;
+
+import com.spring.client.product.vo.ProductVO;
+import com.spring.common.vo.ProductDetailVO;
 
 public interface ProductDAO {
     public List<ProductVO> productList(ProductVO productVO);

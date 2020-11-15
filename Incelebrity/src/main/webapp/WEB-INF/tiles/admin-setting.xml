@@ -5,6 +5,7 @@
   
 <tiles-definitions>
 	<definition name="main" template="/WEB-INF/views/main.jsp">
+
 		<put-attribute name="title" value="관리자 페이지"/>
 	</definition>
 	

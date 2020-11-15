@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="client-1.0.0-BUILD-SNAPSHOT.war">
+    <root id="archive" name="farm-1.0.0-BUILD-SNAPSHOT.war">
       <element id="artifact" artifact-name="Incelebrity:war exploded" />
     </root>
   </artifact>

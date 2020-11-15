@@ -1,18 +1,20 @@
 package com.spring.admin.product.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.spring.admin.product.dao.ImageDAO;
 import com.spring.admin.product.dao.ProductManageDAO;
 import com.spring.admin.product.vo.ProductManageVO;
 import com.spring.common.file.FileUploadUtil;
 import com.spring.common.vo.ImageVO;
 import com.spring.common.vo.ProductDetailVO;
+
 import lombok.AllArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -23,7 +25,7 @@ public class ProductManageServiceImpl implements ProductManageService {
     @Setter(onMethod_=@Autowired)
     private ImageDAO imageDAO;
 
-    //글 목록 구현
+    //湲� 紐⑸줉 援ы쁽
     @Override
     public List<ProductManageVO> productManageList(ProductManageVO pmvo) {
         List<ProductManageVO> list = null;
@@ -32,7 +34,7 @@ public class ProductManageServiceImpl implements ProductManageService {
         return list;
     }
 
-    //글 입력 구현
+    //湲� �엯�젰 援ы쁽
     @Transactional
     @Override
     public int productManageInsert(ProductManageVO pmvo) throws Exception {
@@ -40,8 +42,9 @@ public class ProductManageServiceImpl implements ProductManageService {
         int result2 = 0;
         ImageVO ivo = null;
 
-        pmvo.setProduct_list_img(FileUploadUtil.fileUpload(pmvo.getList_images(), "listImg"));
-        List<String> fileName = FileUploadUtil.multipleFileUpload(pmvo.getImages().get(0).getFiles(), "contentImg");
+        pmvo.setProduct_list_img(FileUploadUtil.fileUpload(pmvo.getList_image(), "listImg"));
+        pmvo.setProduct_content_img(FileUploadUtil.fileUpload(pmvo.getContent_image(), "contentImg"));
+        List<String> fileName = FileUploadUtil.multipleFileUpload(pmvo.getImages().get(0).getFiles(), "images");
 
         if(!fileName.isEmpty()){
             pmvo.setProduct_no(productManageDAO.productManageNumber());
@@ -69,7 +72,7 @@ public class ProductManageServiceImpl implements ProductManageService {
         return result;
     }
 
-    //글 상세 구현
+    //湲� �긽�꽭 援ы쁽
     @Override
     public ProductManageVO productManageDetail(ProductManageVO pmvo) {
         ProductManageVO detail = null;

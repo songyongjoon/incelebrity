@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.admin.profit.dao.ProfitDao">
+
+	<!-- 총 게시글 갯수 출력 -->
+	<select id="countBoard" resultType="int">
+		SELECT COUNT(*) FROM profit
+		<if test="profitStart!=null">
+			<where>
+				<![CDATA[ to_date(#{profitStart, jdbcType=VARCHAR},'yy/MM/dd') <= profit_date 
+				and to_date(#{profitEnd, jdbcType=VARCHAR},'yy/MM/dd') >= profit_date]]>
+			</where>
+		</if>
+	</select>
+
+	<!-- 페이징 처리 후 게시글 조회 -->
+	<select id="selectBoard" resultType="profit">
+		SELECT *
+		FROM (
+		SELECT ROWNUM
+		RN, A.*
+		FROM (
+		SELECT *
+		FROM profit
+		<if test="profitStart!=null">
+		<where>
+		<![CDATA[ to_date(#{profitStart, jdbcType=VARCHAR},'yy/MM/dd') <= profit_date and to_date(#{profitEnd, jdbcType=VARCHAR},'yy/MM/dd') >= profit_date]]>
+		</where>
+		</if>
+		ORDER BY profit_no DESC
+		) A 
+		)
+		WHERE RN
+		BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="profitDetail" parameterType="profit" resultType="profit">
+		select p.profit_no, p.profit_sum, p.profit_date, p.orders_no, pr.product_no from product_detail pr
+        inner join orders_detail od
+        on pr.product_no = od.product_no
+        inner join profit p
+        on p.orders_no = od.orders_no
+        where profit_no = #{profit_no} and rownum = 1
+	</select>
+	<!-- 매출 총액 -->
+	<select id="countProfit" parameterType="int" resultType="int" >
+		select sum(profit_sum) as profit_sum 
+		from profit 
+		<where>
+		<if test="profitStart!=''">
+		<![CDATA[profit_date to_date(#{profitStart},'yyyy/MM/dd') <= profit_date and to_date(#{profitEnd},'yyyy/MM/dd') >= profit_date]]>
+		</if>
+		</where>
+		where between #{start} and #{end}
+	</select>
+</mapper>
