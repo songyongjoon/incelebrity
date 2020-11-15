@@ -1,19 +1,19 @@
 package com.spring.common.vo;
 
-//import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-//@Data
-@ToString
-@Setter
-@Getter
+@Data
 public class CommonVO {
-	//ì¡°ê±´ ê²€ìƒ‰ì‹œ ì‚¬ìš©í•  í•„ë“œ(ê²€ìƒ‰ëŒ€ìƒ, ê²€ìƒ‰ë‹¨ì–´)
+	private String page; // ÆäÀÌÁö ¹øÈ£
+	private String pageSize; // ÆäÀÌÁö¿¡ º¸¿©ÁÖ´Â ÁÙ ¼ö
+	private String start_row; // ½ÃÀÛ ·¹ÄÚµå ¹øÈ£
+	private String end_row; // Á¾·á ·¹ÄÚµå ¹øÈ£
+
+	// Á¶°Ç°Ë»ö½Ã »ç¿ëÇÒ ÇÊµå
 	private String search = "";
 	private String keyword = "";
 	
+<<<<<<< HEAD
 	private int pageNum = 0;		//í˜ì´ì§€ë²ˆí˜¸
 	private int amount = 0;			//í˜ì´ì§€ì— ë³´ì—¬ì¤„ ë°ì´í„°ìˆ˜
 	
@@ -55,5 +55,14 @@ public class CommonVO {
        setEnd(nowPage * cntPerPage);
        setStart(getEnd() - cntPerPage + 1);
     }
+=======
+>>>>>>> branch 'master' of https://github.com/songyongjoon/incelebrity.git
 
+<<<<<<< HEAD
 }
+=======
+	// ³¯Â¥ °Ë»ö½Ã »ç¿ëÇÒ ÇÊµå
+	private String start_date = "";
+	private String end_date = "";
+}
+>>>>>>> branch 'master' of https://github.com/songyongjoon/incelebrity.git
