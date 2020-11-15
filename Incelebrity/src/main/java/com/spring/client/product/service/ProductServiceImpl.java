@@ -1,7 +1,7 @@
 package com.spring.client.product.service;
 
 import com.spring.client.product.dao.ProductDAO;
-import com.spring.client.product.vo.ProductDetailVO;
+import com.spring.common.vo.ProductDetailVO;
 import com.spring.client.product.vo.ProductVO;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;

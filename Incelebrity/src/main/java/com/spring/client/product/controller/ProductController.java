@@ -2,7 +2,7 @@ package com.spring.client.product.controller;
 
 import com.spring.client.member.vo.MemberVO;
 import com.spring.client.product.service.ProductService;
-import com.spring.client.product.vo.ProductDetailVO;
+import com.spring.common.vo.ProductDetailVO;
 import com.spring.client.product.vo.ProductVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -10,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -28,6 +26,8 @@ public class ProductController {
 
         List<ProductVO> productList = productService.productList(productVO);
         model.addAttribute("productList", productList);
+
+        log.info(productList);
 
         return "product/productList";
     }
@@ -47,11 +47,10 @@ public class ProductController {
             model.addAttribute("productData", productData);
             model.addAttribute("productDetailData", productDetailData);
             log.info("detail : " + productData);
-            log.info("detail : " + productDetailData);
             url = "product/productDetail";
         }
         else{
-            url = "redirect:/product/productList";
+            url = "redirect:/member/loginForm";
         }
 
         return url;

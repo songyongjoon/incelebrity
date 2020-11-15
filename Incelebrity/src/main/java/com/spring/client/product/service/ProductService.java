@@ -1,6 +1,6 @@
 package com.spring.client.product.service;
 
-import com.spring.client.product.vo.ProductDetailVO;
+import com.spring.common.vo.ProductDetailVO;
 import com.spring.client.product.vo.ProductVO;
 
 import java.util.List;

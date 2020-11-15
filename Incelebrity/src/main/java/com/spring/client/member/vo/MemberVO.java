@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,7 +30,7 @@ public class MemberVO {
 	private String member_address=		"";
 	private String member_email=		"";
 	private String member_phone=		"";
-	private String member_birth=		"";
+	private Date member_birth=		null;
 	private String member_passhint=		"";
 	private String member_passanswer=	"";
 	private int member_state=			0;

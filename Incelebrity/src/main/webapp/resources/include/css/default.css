@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+/* 공통 부분*/
+textarea{resize:none;}
+.contentContainer{margin-bottom: 60px;}
+.contentTB{margin-top:10px;}
+.contentTB .table-height{height:200px;}
+
+/* 댓글 처리 */
+.gap{margin-right:8px;}
+.margin_top{margin-top:8px;}
+.cnt{font-size:10px; color:red;}
+.inline{display:inline;}
+.msg_error, .required{color:red; }
+.msg_default{font-weight:bold;}
+
+/* 다중 이미지 처리 */
+#multipleImage input[type="file"]{display:inline; }
+#multipleImage img {
+	margin:10px 5px;border:2px solid black; width:400px; height:200px; 
+	border-radius:10px; box-shadow:5px 5px 3px #ccc;}
+.closeBtn, .clearBtn {
+  font-size: 21px; font-weight: bold; 
+  line-height: 1; color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20); opacity: .2;
+}
+.closeBtn:hover, .closeBtn:focus, .clearBtn:hover, .clearBtn:focus  {
+  color: #000; text-decoration: none; cursor: pointer;
+  filter: alpha(opacity=50); opacity: .5;
+}	
+.col-md-1{ margin-top:10px;}

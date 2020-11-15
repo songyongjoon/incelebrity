@@ -1,4 +1,4 @@
-package com.spring.client.product.vo;
+package com.spring.common.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

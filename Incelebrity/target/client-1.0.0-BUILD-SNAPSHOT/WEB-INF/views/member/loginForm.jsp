@@ -23,7 +23,7 @@
 	<script type = "text/javascript">
 		$(function(){
 			$("#back_btn").click(function(){
-				location.href = "/"
+				location.href = "../../.."
 			});
 
 			$("#login_btn").click(function(){
@@ -37,7 +37,7 @@
 					},
 					success : function(result){
 						if(result == "success"){
-							location.href = "/";
+							location.href = "../../..";
 						}
 						else if(result == "fail"){
 							var chkTag = "<span></span>";

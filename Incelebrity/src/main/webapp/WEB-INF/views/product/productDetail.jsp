@@ -29,7 +29,6 @@
 					<tr>
 						<td>
 							<img src='${productData.product_list_img}' />
-							<img src="/resources/image/top01.jpg" />
 						</td>
 						<td>
 							${productData.product_name}
@@ -50,7 +49,7 @@
 					<tr>
 						<td colspan="2">
 							리플 나오는 곳
-<%--							<jsp:include page="reply.jsp" />--%>
+<%--						<jsp:include page="reply.jsp" />--%>
 						</td>
 					</tr>
 				</table>
