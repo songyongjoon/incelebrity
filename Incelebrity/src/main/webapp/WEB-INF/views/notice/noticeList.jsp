@@ -59,18 +59,23 @@
 	 				}
 	 				goPage();
 	 			});       
-	        	 
+				
 				//제목 클릭 시 상세 페이지 이동을 위한 처리 이벤트
 				$(".goDetail").click(function(){
-					var b_num = $(this).parents("tr").attr("data-num");
-				$("#notice_no").val(b_num);
-					console.log("글번호: " + b_num);
-					//상세 페이지로 이동하기 위해  form 추가(id: detailForm)
+					var notice_no = $(this).parents("tr").attr("data-num");
+				$("#notice_no").val(notice_no);
+					console.log("글번호: " + notice_no);
 					$("#detailForm").attr({
 						"method" : "get",
 						"action" : "/notice/noticeDetail"
 					});
 					$("#detailForm").submit();
+				});
+				
+				$("paginate_button a").click(function(e) {
+					e.preventDefault();
+					$("#f_search").find("input[name='[ageNum']").val($(this).attr("href"));
+					goPage();
 				});
 			});
 			
@@ -85,6 +90,10 @@
 				});
 				$("#f_search").submit();
 			}
+	    	function selChange() {
+	    	      var sel = document.getElementById('cntPerPage').value;
+	    	      location.href="noticeList?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	    	   }
 			
 		</script>
 	</head>
@@ -92,9 +101,13 @@
 		<form id="detailForm" name="detailForm">
 			<input type="hidden" id="notice_no" name="notice_no"/>
 		</form>
+		
+		<form id="detailForm">
+         <input type="hidden" id="notice_no" name="notice_no" />
+      </form>
       
       <%--===================== 검색 기능 시작 ====================== --%>
-   <div id="boardSearch" class="text-right">
+   <div id="noticeSearch" class="text-right">
       <form id="f_search" name="f_search" class="form-inline">
          <div class="form-group">
             <label>검색조건</label>
@@ -110,7 +123,7 @@
       </form>
    </div>      
    <%--======================검색 기능 종료====================== --%>
-   
+  
 		
 		<div class="container">
 			<div id="noticeList">
@@ -125,12 +138,11 @@
 					</thead>
 					<tbody id="list" class="table-striped">
 						<c:choose>
-							<c:when test="${not empty noticeList}">
-								<c:forEach var="notice" items="${noticeList}" varStatus="status">
+							<c:when test="${not empty viewAll}">
+								<c:forEach var="notice" items="${viewAll}" varStatus="status">
 									<tr class="text-center" data-num="${notice.notice_no}">
 										<td>${notice.notice_no}</td>
-										<td class="goDetail text-left">${notice.notice_title}<c:if test="${notice.notice_readcnt>0}"><span class="cnt">[${notice.notice_readcnt}]</span></c:if></td>
-			
+										<td class="goDetail text-left">${notice.notice_title}</td>
 										<td class="text-left">${notice.notice_writeday}</td>
 										<td class="name">${notice.notice_name}</td>
 									</tr>
@@ -146,8 +158,25 @@
 				</table>
 			</div>
 			<div class="text-right">
-				<input type="button" value="글쓰기" id="insertFormBtn" class="btn btn-success"/>
 			</div>
 		</div> 
+		 <div style="display: block; margin-bottom: 100px; text-align: center;">      
+      <c:if test="${paging.startPage != 1 }">
+         <a href="/notice/noticeList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+      </c:if>
+      <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+         <c:choose>
+            <c:when test="${p == paging.nowPage }">
+               <b>${p }</b>
+            </c:when>
+            <c:when test="${p != paging.nowPage }">
+               <a href="/notice/noticeList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+            </c:when>
+         </c:choose>
+      </c:forEach>
+      <c:if test="${paging.endPage != paging.lastPage}">
+         <a href="/notice/noticeList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+      </c:if>
+   </div>
 	</body>
 </html>

@@ -13,12 +13,14 @@
   <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
       <li class="active"><a href="/">Home</a></li>
+
       <li><a href="/notice/noticeList">공지사항</a></li>
-      <li><a href="/gallery/galleryList">갤러리</a></li>
+      <li><a href="/qna/qnaList">Q&A</a></li>
       <li><a href="/product/productList">상품</a></li>
       <li><a href="/member/loginForm">로그인</a></li>
       <li><a href="/multiple/multipleBoardList">게시판(다중첨부파일)</a></li>
       <!-- 
+
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
