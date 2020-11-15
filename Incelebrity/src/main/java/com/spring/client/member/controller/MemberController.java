@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.spring.client.member.service.MemberService;
@@ -33,16 +32,15 @@ public class MemberController {
 		log.info("memberLogin 호출 성공");
 
 		HttpSession session = req.getSession();
-		int memberIdCheck = 0;
 		int loginCheck = 0;
 		String result = "";
 
-		memberIdCheck = memberService.getUserOne(memberVO);
+		memberVO = memberService.getUserOne(memberVO);
 
-		if(memberIdCheck == 0){
+		if(memberVO == null){
 			result = "fail";
 		}
-		else if(memberIdCheck == 1){
+		else if(memberVO != null){
 			loginCheck = memberService.memberLogin(memberVO);
 
 			if(loginCheck == 1){
@@ -65,7 +63,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/memberSignUp")
-	public String signUp(@ModelAttribute("data") MemberVO memberVO, Model model) {
+	public String signUp(@ModelAttribute("data") MemberVO memberVO) {
 		log.info("memberSignUp 호출 성공");
 
 		String url = "";
@@ -88,12 +86,12 @@ public class MemberController {
 	public String getUserOne(@ModelAttribute("data") MemberVO memberVO){
 		log.info("getUserOne 호출 성공");
 
-		int value = 0;
+		MemberVO value = null;
 		String result = "";
 
 		value = memberService.getUserOne(memberVO);
 
-		if(value == 1) {
+		if(value != null) {
 			result = "fail";
 		}
 		else{

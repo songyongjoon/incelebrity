@@ -26,7 +26,7 @@
 		
 		<!-- 파일업로드 중 크기설정 -->
 		<multipart-config>
-			<location>C:\\uploadStorage\\</location>	<!-- 업로드되는 파일을 저장할 공간 -->
+			<location>/Users/khotaehyeong/Downloads/uploadStorage</location>	<!-- 업로드되는 파일을 저장할 공간 -->
 			<max-file-size>20971520</max-file-size>		<!-- 업로드 되는 파일의 최대 크기 -1MB * 20 -->
 			<max-request-size>41943040</max-request-size>	<!-- 한번에 올릴 수 있는 최대 크기 - 40MB -->
 			<file-size-threshold>20971520</file-size-threshold>		<!-- 특정 사이즈의 메모리사용 - 20MB -->
