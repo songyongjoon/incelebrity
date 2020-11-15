@@ -12,7 +12,7 @@
       order by qna_reply_no desc
 	</select>
 	
-   <select id="reviewReplyList" parameterType="reply" resultType="reply">
+   <select id="qnareplyList" parameterType="reply" resultType="reply">
       select review_reply_no, review_no, review_reply_content, review_reply_name
       ,to_char(review_reply_writeday, 'YYYY-MM-DD') as review_reply_writeday
       from review_reply 
