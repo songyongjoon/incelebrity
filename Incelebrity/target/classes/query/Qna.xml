@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.client.qna.dao.QnaDAO">
+
+
+    <!-- 게시판 리스트 검색 부분 추가 -->
+    <select id="qnaList" parameterType="qna" resultType="qna">
+        SELECT qna_no, qna_title, qna_name to_char(qna_writeday, 'YYYY-MM-DD')
+        as qna_writeday
+        FROM qna
+        <where>
+            <if test="search=='qna_title'">
+                <![CDATA[qna_title LIKE '%'|| #{keyword} || '%']]>
+            </if>
+            <if test="search=='qna_content'">
+                <![CDATA[qna_content LIKE '%'|| #{keyword} ||'%']]>
+            </if>
+            <if test="search=='qna_name'">
+                <![CDATA[qna_name LIKE '%'|| #{keyword}||'%']]>
+            </if>
+        </where>
+        ORDER BY qna_no desc
+    </select>
+
+    <!-- 게시물 등록1
+    <insert id="boardInsert" parameterType="board">
+       INSERT INTO spring_board(b_num, b_name, b_title, b_content, b_pwd)
+       VALUES(spring_board_seq.nextval, #{b_name}, #{b_title}, #{b_content}, #{b_pwd}
+    </insert>
+    -->
+
+    <!-- 게시물 등록2
+    <insert id="noticeInsert" parameterType="notice">
+       /* Board - noticeInsert */
+       <selectKey keyProperty="notice_no" resultType="int" order="BEFORE">
+          SELECT notice_seq.nextval from dual
+       </selectKey>
+
+       INSERT INTO notice(notice_no, notice_name, notice_title, notice_content)
+       VALUES(#{notice_no}, #{notice_name}, #{notice_title}, #{notice_content})
+    </insert>-->
+
+    <select id="qnaDetail" parameterType="qna" resultType="qna">
+       /* Board - noticeDetail */
+       SELECT qna_no, qna_name, qna_title, qna_content, TO_CHAR(qna_writeday, 'YYYY-MM-DD HH24:MI:SS') AS qna_writeday
+       FROM qna
+       WHERE qna_no = #{qna_no}
+    </select>
+
+
+    <!-- 게시물 삭제
+    <delete id="noticeDelete" parameterType="board">
+       /* Board - noticeDelete */
+       DELETE FROM notice
+       WHERE notice_no = #{notice_no}
+    </delete>-->
+</mapper>
