@@ -12,5 +12,8 @@
 		<typeAlias type="com.spring.client.qna.vo.QnaVO" alias="qna"/>
 		<typeAlias type="com.spring.admin.product.vo.ProductManageVO" alias="productManage"/>
 		<typeAlias type="com.spring.common.vo.ImageVO" alias="image"/>
+		<typeAlias type="com.spring.client.orders.vo.OrdersVO" alias="orders" />
+		<typeAlias type="com.spring.client.orders.vo.OrdersDetailVO" alias="Dateil" />
+		<typeAlias type="com.spring.client.mypage.vo.MypageVO" alias="mypage" />
 	</typeAliases>
 </configuration>

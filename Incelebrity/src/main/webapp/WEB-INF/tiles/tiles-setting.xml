@@ -41,4 +41,14 @@
 		<put-attribute name="title" value="다중파일첨부게시판"/>
 		<put-attribute name= "body" value="/WEB-INF/views/multiple/{1}.jsp"/>
 	</definition>
+	
+	<definition name="orders/*" extends="content">
+		<put-attribute name="title" value="관리자 주문정보" />
+		<put-attribute name="body" value="/WEB-INF/views/orders/{1}.jsp" />
+	</definition>
+	
+	<definition name="mypage/*" extends="content">
+		<put-attribute name="title" value="마이페이지 주문정보" />
+		<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" />
+	</definition>
 </tiles-definitions>
