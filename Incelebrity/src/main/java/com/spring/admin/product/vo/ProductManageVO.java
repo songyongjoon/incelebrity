@@ -16,9 +16,11 @@ public class ProductManageVO extends CommonVO {
     private String product_name = "";
     private int product_price = 0;
     private String product_list_img = "";
+    private String product_content_img = "";
     private List<ImageVO> images;
     private String product_content = "";
-    private MultipartFile list_images;
+    private MultipartFile list_image;
+    private MultipartFile content_image;
 
     public ProductManageVO(){
         images = new ArrayList<ImageVO>();
