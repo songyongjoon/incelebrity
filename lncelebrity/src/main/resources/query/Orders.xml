@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.client.orders.dao.OrdersDao">
+	<!-- 관리자 주문 게시판 -->
+	<select id="ordersList" parameterType="orders" resultType="orders">
+		/* ordersList */
+<!-- 		select orders_no, orders_address, orders_phone, orders_state, to_char(orders_date, 'YYYY-MM-DD') as orders_date, -->
+<!-- 		(select orders_detail_name from orders_detail where orders_no = orders.orders_no)  -->
+<!-- 		as orders_detail_name from orders  order by orders_no desc    -->
+		select ord.orders_no, ordd.orders_detail_name, ord.orders_phone, ord.orders_state, ord.orders_address, 
+		to_char(ord.orders_date, 'YYYY-MM-DD') as orders_date
+		from orders ord inner join (select distinct orders_no,orders_detail_name from orders_detail) ordd  
+		on ord.orders_no = ordd.orders_no order by ord.orders_no
+	</select>
+	
+	<!-- 상세 게시판 -->
+	<select id="ordersDetail" parameterType="Dateil" resultType="Dateil">
+		/* ordersDetail */
+<!-- 		select orders_detail_no, orders_detail_name, orders_detail_price, orders_detail_count, orders_detail_size,  -->
+<!-- 		orders_detail_color, (select orders_date from orders where orders_no = #{orders_no})  -->
+<!-- 		as orders_date from orders_detail where orders_no = #{orders_no} -->
+		select ord.orders_no, ordd.orders_detail_name, ordd.orders_detail_price, ordd.orders_detail_count 
+		, ordd.orders_detail_size, ordd.orders_detail_color, to_char(ord.orders_date,'YYYY-MM-DD') as orders_date 
+		from orders_detail ordd inner join orders ord on ordd.orders_no = ord.orders_no where ord.orders_no = #{orders_no}
+	</select>
+	
+	<!-- 삭제 -->
+	<delete id="ordersDelete" parameterType="orders">
+		delete from order_detail where orders_no = #{orders_no}
+	</delete>
+</mapper>
