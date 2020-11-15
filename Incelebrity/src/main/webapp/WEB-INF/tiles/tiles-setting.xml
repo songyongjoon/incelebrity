@@ -17,28 +17,45 @@
 		<put-attribute name="footer" value="/WEB-INF/views/template/client/footer.jsp"/> 
 	</definition>
 	
-	<definition name="board/*" extends="content">
-		<put-attribute name="title" value="기본 게시판"/>
-		<put-attribute name= "body" value="/WEB-INF/views/board/{1}.jsp"/>
-	</definition>
 	
-	<definition name="member/*" extends="content">
-		<put-attribute name="title" value="로그인"/>
-		<put-attribute name= "body" value="/WEB-INF/views/member/{1}.jsp"/>
-	</definition>
-
+	
 	<definition name="notice/*" extends="content">
 		<put-attribute name="title" value="공지사항"/>
 		<put-attribute name= "body" value="/WEB-INF/views/notice/{1}.jsp"/>
 	</definition>
+<<<<<<< HEAD
+	
+	<definition name="qna/*" extends="content">
+		<put-attribute name="title" value="질문게시판"/>
+		<put-attribute name= "body" value="/WEB-INF/views/qna/{1}.jsp"/>
+=======
 
 	<definition name="product/*" extends="content">
 		<put-attribute name="title" value="상품"/>
 		<put-attribute name="body" value="/WEB-INF/views/product/{1}.jsp"/>
+>>>>>>> branch 'master' of https://github.com/songyongjoon/incelebrity.git
 	</definition>
 	
+<<<<<<< HEAD
+
+=======
 	<definition name="mulitiple/*" extends="content">
 		<put-attribute name="title" value="다중파일첨부게시판"/>
 		<put-attribute name= "body" value="/WEB-INF/views/multiple/{1}.jsp"/>
 	</definition>
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/songyongjoon/incelebrity.git
+	
+	<definition name="review/*" extends="content">
+		<put-attribute name="title" value="다중파일첨부게시판"/>
+		<put-attribute name= "body" value="/WEB-INF/views/client/review/{1}.jsp"/>
+	</definition>
+	
+	<definition name="profit/*" extends="content">
+		<put-attribute name="title" value="다중파일첨부게시판"/>
+		<put-attribute name= "body" value="/WEB-INF/views/admin/profit/{1}.jsp"/>
+	</definition>
+	
+=======
+>>>>>>> branch 'master' of https://github.com/songyongjoon/teamProject.git
 </tiles-definitions>
