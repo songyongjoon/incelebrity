@@ -32,4 +32,14 @@
 		<put-attribute name= "body" value="/WEB-INF/views/multiple/{1}.jsp"/>
 	</definition>
 	
+	<definition name="review/*" extends="content">
+		<put-attribute name="title" value="다중파일첨부게시판"/>
+		<put-attribute name= "body" value="/WEB-INF/views/client/review/{1}.jsp"/>
+	</definition>
+	
+	<definition name="profit/*" extends="content">
+		<put-attribute name="title" value="다중파일첨부게시판"/>
+		<put-attribute name= "body" value="/WEB-INF/views/admin/profit/{1}.jsp"/>
+	</definition>
+	
 </tiles-definitions>
