@@ -30,7 +30,7 @@
 
                 var addData = '<div class="row">';
                 addData += '<div class="col-md-11">';
-                addData += '<input type="file" name="images[0].files[' + fileIndex + ']" class="margin_top btn_block" /></div>';
+                addData += '<input type="file" name="images[0].files[' + fileIndex + ']" id="images[0].files[' + fileIndex + ']" class="margin_top btn_block file" /></div>';
                 addData += '<div class="col-md-1">';
                 addData += '<span class="closeBtn">&times;</span></div></div>';
 
@@ -56,9 +56,18 @@
                 else{
                     $('.file').each(function(){
                         if($(this).val() != ""){
-                            if(!checkFile($(this))) return;
+                            if(!chkFile($(this))) exit = true;
+                            else exit = false;
+                        }
+                        else if($(this).val() == ""){
+                            if(!chkSubmit($(this), "파일을")) exit = true;
+                            else exit = false;
                         }
                     });
+
+                    if(exit){
+                        return false;
+                    }
 
                     $("div.row .col-md-11 input[type='file']").each(function(){
                         if($(this).val() == ""){
@@ -89,6 +98,7 @@
         상품명 : <input type="text" name="product_name" id="product_name" />
         수량 : <input type="number" name="product_detail_stock" id="product_detail_stock" />
         색상 : <input type="text" name="product_detail_color" id="product_detail_color" />
+        가격 : <input type="number" name="product_price" id="product_price" />
         크기 : <select name="product_detail_size" id="product_detail_size">
                 <option value="F">Freesize</option>
                 <option value="S">S</option>
@@ -99,8 +109,9 @@
         <table class="table">
             <tr>
                 <td>
-                    리스트 파일 추가 : <input type="file" name="list_images" class="margin_top btn_block" />
-                    컨텐츠 파일 추가 : <button type="button" id="addFile" class="btn btn-default btn-block">첨부파일추가</button>
+                    리스트 파일 추가 : <input type="file" name="list_image" class="margin_top btn_block file" />
+                    컨텐츠 파일 추가 : <input type="file" name="content_image" class="margin_top btn_block file" />
+                    <button type="button" id="addFile" class="btn btn-default btn-block">첨부파일추가</button>
                 </td>
                 <td class="text-left"></td>
             </tr>

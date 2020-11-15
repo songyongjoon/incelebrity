@@ -31,7 +31,7 @@
     <!-- 게시물 등록 1 -->
     <insert id="productManageInsert" parameterType="productManage">
         insert into product(product_no, product_name, PRODUCT_PRICE, PRODUCT_LIST_IMG, PRODUCT_CONTENT_IMG, CATEGORY_NO, product_content)
-        values(#{product_no}, #{product_name}, 30000, #{product_list_img}, 'ssfdasgr', 1, #{product_content})
+        values(#{product_no}, #{product_name}, #{product_price}, #{product_list_img}, #{product_content_img}, 1, #{product_content})
     </insert>
 
     <!-- 게시물 등록 2 -->

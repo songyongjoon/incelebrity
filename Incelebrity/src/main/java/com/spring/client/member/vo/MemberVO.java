@@ -30,7 +30,7 @@ public class MemberVO {
 	private String member_address=		"";
 	private String member_email=		"";
 	private String member_phone=		"";
-	private Date member_birth=		null;
+	private String member_birth=		"";
 	private String member_passhint=		"";
 	private String member_passanswer=	"";
 	private int member_state=			0;
