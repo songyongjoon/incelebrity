@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
@@ -80,4 +81,88 @@
 
    </delete>
    
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.spring.client.qnaReply.dao.QnaReplyDAO">
+   <!-- 댓글 전체 조회(해당 게시물번호에 대해) -->
+   <select id="qnaReplyList" parameterType="qnaReply" resultType="qnaReply">
+      select qna_reply_no, qna_no, qna_reply_content, qna_reply_name
+      ,to_char(qna_reply_writeday, 'YYYY-MM-DD') as qna_reply_writeday
+      from qna_reply 
+      where qna_no = #{qna_no} 
+      order by qna_reply_no desc
+	</select>
+	
+   <select id="reviewReplyList" parameterType="reply" resultType="reply">
+      select review_reply_no, review_no, review_reply_content, review_reply_name
+      ,to_char(review_reply_writeday, 'YYYY-MM-DD') as review_reply_writeday
+      from review_reply 
+      where review_no = #{review_no} 
+      order by review_reply_no desc
+
+   </select>
+   
+   <!-- 댓글 등록 -->
+   <insert id="qnareplyInsert" parameterType="qnaReply">
+      /* Reply - replyInsert */
+      <selectKey keyProperty="review_reply_no" resultType="int" order="BEFORE">
+
+
+         select review_reply_seq.nextval from dual      
+
+      </selectKey>
+
+         insert into qna_reply(
+            qna_reply_no, qna_no, qna_reply_name, qna_reply_content, qna_reply_writeday
+         )
+         values(
+            #{qna_reply_no}, #{qna_no}, #{qna_reply_name}, #{qna_reply_content}, sysdate
+
+         insert into review_reply(
+            review_reply_no, review_no, review_reply_name, review_reply_content, review_reply_writeday
+         )
+         values(
+            #{review_reply_no}, #{review_no}, #{review_reply_name}, #{review_reply_content}, sysdate
+
+         )
+   </insert>
+   
+   
+   <!-- 해당번호 댓글 정보 조회 -->
+   <select id="qnareplySelect" parameterType="int" resultType="qnaReply">
+      select qna_reply_no, qna_no, qna_reply_name, qna_reply_content, qna_reply_writeday
+      from qna_reply
+      where qna_reply_no = #{qna_reply_no}
+   </select>
+   
+   <!-- 댓글 수정 -->
+   <update id="qnareplyUpdate" parameterType="qnaReply">
+      /*Reply - replyUpdate*/
+
+      update qna_reply
+      set qna_reply_content = #{qna_reply_content}
+      ,qna_reply_writeday = sysdate
+      where qna_reply_no = #{qna_reply_no}
+
+      update review_reply
+      set review_reply_content = #{review_reply_content}
+      ,review_reply_writeday = sysdate
+      where review_reply_no = #{review_reply_no}
+
+   </update>
+   
+   <!-- 댓글 삭제 -->
+   <delete id="qnareplyDelete" parameterType="qnaReply">
+         /*Reply - replyDelete*/
+
+         delete from qna_reply where qna_reply_no = #{qna_reply_no}
+
+         delete from review_reply where review_reply_no = #{review_reply_no}
+
+   </delete>
+   
+>>>>>>> branch 'master' of https://github.com/songyongjoon/incelebrity.git
 </mapper>

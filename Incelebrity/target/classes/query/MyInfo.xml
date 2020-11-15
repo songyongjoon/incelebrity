@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.client.mypage.dao.MyPageDAO">
+
+<!-- 내 정보 조회 -->
+<select id="myInfo" parameterType="myPage" resultType="myPage">
+select member_id, member_passwd, member_name, member_address, member_email, member_phone, to_char(member_birth,'YYYY-MM-dd') as member_birth from member where member_id = #{member_id}
+</select>
+
+ <!-- 해당 번호의 비밀번호 확인 -->
+	 <select id="pwdConfirm" parameterType="myPage" resultType="int">
+	 	SELECT NVL((
+		 		SELECT 1
+		 		FROM member
+		 		WHERE member_id = #{member_id} AND member_passwd = #{member_passwd}
+		 	), 0) as state
+	 	FROM dual
+	 </select>
+
+<!-- 내 정보 수정 -->
+<update id="myInfoUpdate" parameterType="myPage">
+		UPDATE member SET member_passwd = #{member_passwd}, member_address = #{member_address}, member_phone = #{member_phone}, member_email = #{member_email}, member_birth = to_date(#{member_birth},'YY/MM/DD') WHERE member_id = #{member_id}
+	</update>
+	
+<!-- 회원탈퇴 -->
+<update id="quitUpdate" parameterType="myPage">
+		UPDATE member SET member_state = 2 WHERE member_id = #{member_id}
+	</update>
+
+
+</mapper>

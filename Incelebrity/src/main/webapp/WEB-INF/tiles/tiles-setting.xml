@@ -17,27 +17,52 @@
 		<put-attribute name="footer" value="/WEB-INF/views/template/client/footer.jsp"/> 
 	</definition>
 	
+	<definition name="board/*" extends="content">
+		<put-attribute name="title" value="기본 게시판"/>
+		<put-attribute name= "body" value="/WEB-INF/views/board/{1}.jsp"/>
+	</definition>
+	
+	<definition name="member/*" extends="content">
+		<put-attribute name="title" value="로그인"/>
+		<put-attribute name= "body" value="/WEB-INF/views/member/{1}.jsp"/>
+	</definition>
+
 	<definition name="notice/*" extends="content">
 		<put-attribute name="title" value="공지사항"/>
 		<put-attribute name= "body" value="/WEB-INF/views/notice/{1}.jsp"/>
 	</definition>
+
 	<definition name="product/*" extends="content">
 		<put-attribute name="title" value="상품"/>
 		<put-attribute name="body" value="/WEB-INF/views/product/{1}.jsp"/>
 	</definition>
+	
 	<definition name="mulitiple/*" extends="content">
 		<put-attribute name="title" value="다중파일첨부게시판"/>
 		<put-attribute name= "body" value="/WEB-INF/views/multiple/{1}.jsp"/>
 	</definition>
+		<definition name="admin/member/*" extends="content">
+		<put-attribute name="title" value="회원관리"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/member/{1}.jsp"/>
+	</definition>
+	
+	<definition name="member/findPwd/*" extends="content">
+		<put-attribute name="title" value="비밀번호 찾기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/findPwd/{1}.jsp"/>
+	</definition>
 
-	<definition name="review/*" extends="content">
-		<put-attribute name="title" value="다중파일첨부게시판"/>
-		<put-attribute name= "body" value="/WEB-INF/views/client/review/{1}.jsp"/>
+	<definition name="member/myPage/*" extends="content">
+		<put-attribute name="title" value="마이페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/myPage/{1}.jsp"/>
 	</definition>
 	
 	<definition name="profit/*" extends="content">
 		<put-attribute name="title" value="다중파일첨부게시판"/>
 		<put-attribute name= "body" value="/WEB-INF/views/admin/profit/{1}.jsp"/>
 	</definition>
-
+	
+	<definition name="review/*" extends="content">
+		<put-attribute name="title" value="다중파일첨부게시판"/>
+		<put-attribute name= "body" value="/WEB-INF/views/client/review/{1}.jsp"/>
+	</definition>
 </tiles-definitions>

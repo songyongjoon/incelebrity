@@ -1,3 +1,43 @@
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div id="navbar" class="collapse navbar-collapse">
+    <a class="navbar-brand" href="/">프로젝트 제목</a>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/notice/noticeList">공지사항</a></li>
+      <li><a href="/gallery/galleryList">갤러리</a></li>
+      <li><a href="/product/productList">상품</a></li>
+      <li><a href="/member/loginForm">로그인</a></li>
+      <li><a href="/multiple/multipleBoardList">게시판(다중첨부파일)</a></li>
+      <li><a href="/admin/member/memberList">회원관리</a></li>
+      <li><a href="/member/myPage/myPageMain">마이페이지</a></li>
+      <!-- 
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li class="divider"></li>
+          <li class="dropdown-header">Nav header</li>
+          <li><a href="#">Separated link</a></li>
+          <li><a href="#">One more separated link</a></li>
+        </ul>
+      </li>
+      -->
+    </ul>
+  </div><!--/.nav-collapse -->
+=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="container">
@@ -36,4 +76,5 @@
       -->
     </ul>
   </div><!--/.nav-collapse -->
+>>>>>>> branch 'master' of https://github.com/songyongjoon/teamProject.git
 </div>
