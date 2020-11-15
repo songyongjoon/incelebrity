@@ -42,7 +42,11 @@
 		<beans:property name="definitions">
 			<beans:list>
 				<beans:value>/WEB-INF/tiles/tiles-setting.xml</beans:value>
+<<<<<<< HEAD
+				<!-- <beans:value>/WEB-INF/tiles/admin-setting.xml</beans:value> -->
+=======
 				<beans:value>/WEB-INF/tiles/admin-setting.xml</beans:value>
+>>>>>>> branch 'master' of https://github.com/songyongjoon/teamProject.git
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -57,8 +61,13 @@
 		<beans:property name="suffix" value=".jsp"/>
 		<beans:property name="order" value="2"/>
 	</beans:bean>
+<<<<<<< HEAD
+	<!-- 파일 첨부를 위한 설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
+=======
 
 	<!-- 파일 첨부 파일을 위한 설정 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</beans:bean>
+>>>>>>> branch 'master' of https://github.com/songyongjoon/teamProject.git
 </beans:beans>

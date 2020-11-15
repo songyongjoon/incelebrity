@@ -1,5 +1,99 @@
 package com.spring.common.file;
 
+<<<<<<< HEAD
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.extern.log4j.Log4j;
+
+@Log4j
+public class FileUploadUtil {
+	/*∆ƒ¿œ æ˜∑ŒµÂ«“ ∆˙¥ı ª˝º∫*/
+	public static void makeDir(String docRoot) {
+		File fileDir = new File(docRoot);
+		if(fileDir.exists()) {
+			return;
+		}
+		fileDir.mkdirs();
+	}
+	
+	/*∆ƒ¿œ æ˜∑ŒµÂ ∏ﬁº≠µÂ*/
+	public static String FileUpload(MultipartFile file, String fileName) throws IOException{
+			log.info("fileUpload »£√‚");
+			
+			String real_name = null;
+			String org_name = file.getOriginalFilename();
+			log.info("org_name" + org_name);
+			
+			//∆ƒ¿œ∏Ì ∫Ø∞Ê
+			if(org_name != null && (!org_name.equals(""))) {
+				real_name = fileName +"_" + System.currentTimeMillis() + "_" + org_name;
+				//¿˙¿Â«“ ∆ƒ¿œ ¿Ã∏ß
+				
+			String docRoot = "C://uploadStorage//" +fileName;
+			makeDir(docRoot);
+			
+			File fileAdd = new File(docRoot+"/"+real_name); //∆ƒ¿œ ª˝º∫»ƒ
+			
+			file.transferTo(fileAdd);
+			
+			}
+			return real_name;
+	}
+	/* ¥Ÿ¡ﬂ ∆ƒ¿œ æ˜∑ŒµÂ ∏ﬁº≠µÂ*/
+	public static List<String> ReviewFileUpload(List<MultipartFile> file,String fileName) throws IOException{
+		log.info("fileUpload »£√‚");
+		
+		List<String> real_name = new ArrayList<String>();
+		String name = "";
+		
+		//∆ƒ¿œ∏Ì ∫Ø∞Ê
+		if(!file.isEmpty()) {
+			String docRoot = "C://uploadStorage//"+ fileName;
+			makeDir(docRoot);
+			File fileAdd = null;
+			for(MultipartFile MultiFile : file) {
+				name=fileName+"_"+UUID.randomUUID().toString().replaceAll("-", "")+"_"+MultiFile.getOriginalFilename();
+				//¿˙¿Â«“ ∆ƒ¿œ ¿Ã∏ß
+				
+				fileAdd = new File(docRoot+"/"+name);//∆ƒ¿œ ª˝º∫»ƒ
+				log.info("æ˜∑ŒµÂ«“ ∆ƒ¿œ(fileAdd) : " + fileAdd);
+				
+				MultiFile.transferTo(fileAdd);//∆ƒ¿œ ¿˙¿Â
+				real_name.add(name);
+				
+			}
+		}
+		return real_name;
+	}
+	
+	/*∆ƒ¿œ ªË¡¶ ∏ﬁº≠µÂ*/
+	public static void fileDelete(String fileName) throws IOException{
+		log.info("fileDelete »£√‚");
+		
+		boolean result = false;
+		String startDirName = "", docRoot ="";
+		String dirName = fileName.substring(0, fileName.indexOf("_"));
+		
+		if(dirName.equals("thumbnail")) {
+			startDirName = fileName.substring(dirName.length()+1, fileName.indexOf("_", dirName.length()+1));
+			docRoot = "C://uploadStorage//" + startDirName+"//"+dirName;
+		}else {
+			docRoot="C://uploadStorage//"+dirName;
+		}
+		File fileDelete = new File(docRoot+"/"+fileName); //∆ƒ¿œ ª˝º∫»ƒ
+		log.info("ªË¡¶«“∆ƒ¿œ(fileDelete) : " + fileDelete);
+		if(fileDelete.exists() && fileDelete.isFile()) {
+			result = fileDelete.delete();
+			log.info("∆ƒ¿œ ªË¡¶ ø©∫Œ(true/flase) : " + result);
+		}
+	}
+=======
 import lombok.extern.log4j.Log4j;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -99,4 +193,5 @@ public class FileUploadUtil {
             log.info("ÌååÏùº ÏÇ≠Ï†ú Ïó¨Î∂Ä(true/false) : " + result);
         }
     }
+>>>>>>> branch 'master' of https://github.com/songyongjoon/teamProject.git
 }

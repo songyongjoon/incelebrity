@@ -3,6 +3,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+<<<<<<< HEAD
+		<typeAlias type="com.spring.client.review.vo.ReviewVO" alias="review"/>
+		<typeAlias type="com.spring.client.reviewReply.vo.ReviewReplyVO" alias="reply"/>
+		<typeAlias type="com.spring.admin.profit.vo.ProfitVO" alias="profit"/>
+=======
 		<typeAlias type="com.spring.client.board.vo.BoardVO" alias="board"/>
 		<typeAlias type="com.spring.client.reply.vo.ReplyVO" alias="reply"/>
 		<typeAlias type="com.spring.client.member.vo.MemberVO" alias="member"/>
@@ -12,5 +17,6 @@
 		<typeAlias type="com.spring.client.qna.vo.QnaVO" alias="qna"/>
 		<typeAlias type="com.spring.admin.product.vo.ProductManageVO" alias="productManage"/>
 		<typeAlias type="com.spring.common.vo.ImageVO" alias="image"/>
+>>>>>>> branch 'master' of https://github.com/songyongjoon/teamProject.git
 	</typeAliases>
 </configuration>
