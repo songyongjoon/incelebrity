@@ -10,7 +10,6 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <!--viewport : 화면에 보이는 영역을 제어하는 기술. width는 device-width로 설정(브라우저 너비를 장치 너비에 맞추어 표시). initial-scale는 초기비율(보이는 영역과 웹 페이지를 맞춤). user-scalable는 사용자가 화면축소를 하지 못하도록 설정.-->
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-<title>비밀번호 찾기</title>
 <link rel="shortcut icon" href="/resources/image/icon.png" />
 <link rel="apple-touch-icon" href="/resources/image/icon.png" />
 
@@ -26,40 +25,47 @@
 <script type="text/javascript"
 	src="/resources/include/dist/js/bootstrap.min.js"></script>
 <script>
-	$(function() {
-
-		$("#loginFormBtn").click(function() {
-			location.href = "/member/loginForm"
+$(function() {
+	var member_id = ('${loginMember.member_id}');
+	if(member_id == "") {
+		alert("회원만 이용 가능합니다. 로그인 해주세요");
+		location.href = "/member/loginForm";
+	}
+	
+	$("#myInfoBtn").click(function(){
+		$("#myPageForm").attr({
+			"method" : "post",
+			"action" : "/member/myPage/myInfo"
 		})
-	})
+		$("#myPageForm").submit();
+	});
+
+});
 </script>
+
 <style>
+
+#myPageBtn {
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+}
 </style>
 </head>
 <body>
-	<form>
-		<table>
-			<c:choose>
-				<c:when test="${empty detail.member_passwd}">
-					<tr>
-						<td>일치하는 정보가 없습니다.</td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<th>비밀번호</th>
-					</tr>
-					<tr>
-						<td><p>${detail.member_passwd}</p></td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		</table>
-		<div>
-			<button type="button" id="loginFormBtn" name="loginFormBtn"
-				class="btn btn-default">돌아가기</button>
-		</div>
+	<form id="myPageForm" name="myPageForm" method="post">
+		<input type="hidden" id="member_id" name="member_id" value="${loginMember.member_id}">
 	</form>
+		<div id="myPageBtn">
+			<p>
+				<button type="button" id="myInfoBtn" class="btn btn-default" style="width: 150px; height: 150px">내 정보</button>
+				<span><button type="button" id="" style="width: 150px; height: 150px" class="btn btn-default">어딘가에 있을</br>내 게시판</button></span>
+				<span><button type="button" id="" style="width: 150px; height: 150px" class="btn btn-default">어딘가에 있을</br>장바구니</button></span>
+			</p>
+			<p>
+				<button type="button" id=""	style="width: 150px; height: 150px" class="btn btn-default">어딘가에 있을</br>위시리스트</button>
+				<span><button type="button" id="" style="width: 150px; height: 150px" class="btn btn-default">어딘가에 있을</br>주문내역</button></span>
+			</p>
+		</div>
 </body>
 </html>
-

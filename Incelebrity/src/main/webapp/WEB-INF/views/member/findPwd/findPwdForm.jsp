@@ -27,6 +27,7 @@
 	src="/resources/include/dist/js/bootstrap.min.js"></script>
 <script>
 	$(function() {
+
 		$("#IdChk_btn").click(function() {
 			if ($("#member_id").val().replace(/\s/g, "") == "") {
 				alert("아이디를 입력해주세요");
@@ -71,10 +72,12 @@
 					name="member_passanswer"></td>
 			</tr>
 		</table>
+		<div>
+			<button type="submit" id="IdChk_btn" name="IdChk_btn"
+				class="btn btn-default">확인</button>
+			<input type="reset" id="resetbtn" name="resetbtn"
+				class="btn btn-default" value="초기화">
+		</div>
 	</form>
-	<div>
-		<button type="submit" id="IdChk_btn" name="IdChk_btn"
-			class="btn btn-default">확인</button>
-	</div>
 </body>
 </html>

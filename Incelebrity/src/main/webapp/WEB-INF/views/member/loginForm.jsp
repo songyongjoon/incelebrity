@@ -89,7 +89,7 @@
 		</form>
 	</c:when>
 	<c:otherwise>
-		<span>이미 로그인 된 사용자 입니다.</span>
+		<span>이미 로그인된 사용자입니다</span>
 		<input type="button" id="back_btn" name="back_btn" value="뒤로가기" />
 		<input type="button" id="logout_btn" name="logout_btn" value="로그아웃" />
 	</c:otherwise>

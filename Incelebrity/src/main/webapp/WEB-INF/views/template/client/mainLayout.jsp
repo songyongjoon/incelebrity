@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,8 +50,15 @@
 
     <div class="page-header">
         <div class="jumbotron">
-            <h1>프로젝트 언제끝나!!</h1>
-            <p>집에 가고 싶다 싶다 싶다!!</p>
+        <c:choose>
+       		<c:when test="${empty loginMember.member_id}">
+           		<h1>프로젝트 언제끝나!!</h1>
+           		<p>집에 가고 싶다 싶다 싶다!!</p>
+            </c:when>
+            <c:otherwise>
+            <h1>${loginMember.member_id}님 ㅎㅇ</h1>
+            </c:otherwise>
+        </c:choose>
         </div>
     </div>
     <div class="row">

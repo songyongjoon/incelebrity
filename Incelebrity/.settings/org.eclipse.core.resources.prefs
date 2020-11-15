@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/spring/client/findPwd/controller/FindPwdController.java=UTF-8
 encoding//src/main/java/com/spring/client/member/controller/MemberController.java=UTF-8
+encoding//src/main/java/com/spring/client/mypage/controller/MyPageController.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/member/myPage/myInfoUpdateForm.jsp=UTF-8

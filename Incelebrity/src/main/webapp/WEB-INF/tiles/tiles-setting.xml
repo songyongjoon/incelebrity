@@ -51,4 +51,10 @@
 		<put-attribute name="title" value="비밀번호 찾기"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/findPwd/{1}.jsp"/>
 	</definition>
+
+	<definition name="member/myPage/*" extends="content">
+		<put-attribute name="title" value="마이페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/myPage/{1}.jsp"/>
+	</definition>
+
 </tiles-definitions>

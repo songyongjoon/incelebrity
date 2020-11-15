@@ -235,7 +235,7 @@
 		<tr>
 			<td>연락처</td>
 			<td>
-				<select id="member_phone1" name="member_phone1" />
+				<select id="member_phone1" name="member_phone1">
 				<option value="010" selected="selected">010</option>
 				<option value="011">011</option>
 				<option value="016">016</option>
