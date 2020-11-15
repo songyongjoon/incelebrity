@@ -1,8 +1,12 @@
 package com.spring.client.member.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemberVO {
 	/*
 	member_no            NUMBER(4) NOT NULL ,

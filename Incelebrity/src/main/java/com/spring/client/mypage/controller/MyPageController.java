@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.spring.client.member.service.MemberService;
 import com.spring.client.member.vo.MemberVO;
 import com.spring.client.mypage.service.MyPageService;
+import com.spring.client.mypage.vo.MyPageVO;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -30,15 +31,15 @@ public class MyPageController {
 
 	// 마이페이지 메인
 	@GetMapping("/myPageMain")
-	public String myPageMain(@ModelAttribute MemberVO memberVO, Model model, HttpServletRequest req) {
+	public String myPageMain(@ModelAttribute MemberVO vo, Model model, HttpServletRequest req) {
 		log.info("myPageMain 호출성공");
 		HttpSession session = req.getSession();
 		int loginCheck = 0;
 		String result = "";
 
-		loginCheck = memberService.memberLogin(memberVO);
+		loginCheck = memberService.memberLogin(vo);
 		if (loginCheck == 1) {
-			session.setAttribute("loginMember", memberVO);
+			session.setAttribute("loginMember", vo);
 			result = "success";
 		} else {
 			result = "fail";
@@ -50,10 +51,10 @@ public class MyPageController {
 
 	// 내정보 페이지
 	@PostMapping("/myInfo")
-	public String myInfo(@ModelAttribute MemberVO memberVO, Model model) {
+	public String myInfo(@ModelAttribute MyPageVO vo, Model model) {
 		log.info("myInfo 호출성공");
 
-		MemberVO detail = myPageService.myInfo(memberVO);
+		MyPageVO detail = myPageService.myInfo(vo);
 		model.addAttribute("detail", detail);
 
 		return "member/myPage/myInfo";
@@ -62,11 +63,11 @@ public class MyPageController {
 	// 수정시 비밀번호 확인
 	@ResponseBody
 	@RequestMapping(value = "/pwdConfirm", method = RequestMethod.POST)
-	public String pwdConfirm(MemberVO memberVO) {
+	public String pwdConfirm(MyPageVO vo) {
 		log.info("pwdConfirm 호출성공");
 		String value = "";
 
-		int result = myPageService.pwdConfirm(memberVO);
+		int result = myPageService.pwdConfirm(vo);
 		if (result == 1) {
 			value = "success";
 		} else {
@@ -78,10 +79,10 @@ public class MyPageController {
 
 	// 수정폼
 	@PostMapping("/myInfoUpdateForm")
-	public String myInfoUpdateForm(@ModelAttribute MemberVO memberVO, Model model) {
+	public String myInfoUpdateForm(@ModelAttribute MyPageVO vo, Model model) {
 		log.info("myInfoUpdateForm 호출성공");
 
-		MemberVO detail = myPageService.myInfoUpdateForm(memberVO);
+		MyPageVO detail = myPageService.myInfoUpdateForm(vo);
 		model.addAttribute("detail", detail);
 
 		return "member/myPage/myInfoUpdateForm";
@@ -90,11 +91,11 @@ public class MyPageController {
 	// 수정
 	@ResponseBody
 	@PostMapping("/myInfoUpdate")
-	public int myInfoUpdate(@ModelAttribute MemberVO memberVO) {
+	public int myInfoUpdate(@ModelAttribute MyPageVO vo) {
 		log.info("myInfoUpdate 호출성공");
 
 		int result = 0;
-		result = myPageService.myInfoUpdate(memberVO);
+		result = myPageService.myInfoUpdate(vo);
 		log.info(result);
 		return result;
 
@@ -102,13 +103,13 @@ public class MyPageController {
 
 	// 탈퇴
 	@PostMapping("/quitUpdate")
-	public String quitUpdate(@ModelAttribute MemberVO memberVO, RedirectAttributes ras, HttpSession session) {
+	public String quitUpdate(@ModelAttribute MyPageVO vo, RedirectAttributes ras, HttpSession session) {
 		log.info("quitUpdate 호출성공");
 
 		int result = 0;
 		String url = "";
-		result = myPageService.quitUpdate(memberVO);
-		ras.addFlashAttribute("data", memberVO);
+		result = myPageService.quitUpdate(vo);
+		ras.addFlashAttribute("data", vo);
 
 		if (result == 1) {
 			session.invalidate();

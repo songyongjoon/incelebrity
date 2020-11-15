@@ -268,7 +268,7 @@
 		</tr>
 		<tr>
 			<td>생일</td>
-			<td><input type="text" id="member_birth" name="member_birth" /></td>
+			<td><input type="date" id="member_birth" name="member_birth" /></td>
 		</tr>
 		<tr>
 			<td>비밀번호 힌트</td>

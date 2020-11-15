@@ -23,7 +23,8 @@
 	<script type = "text/javascript">
 		$(function(){
 			$("#back_btn").click(function(){
-				location.href = "/"
+
+				location.href = "../../.."
 			});
 
 			$("#login_btn").click(function(){
@@ -37,7 +38,7 @@
 					},
 					success : function(result){
 						if(result == "success"){
-							location.href = "/";
+							location.href = "../../..";
 						}
 						else if(result == "fail"){
 							var chkTag = "<span></span>";
@@ -61,10 +62,7 @@
 			$("#find_pwd_btn").click(function(){
 				location.href = "/member/findPwd/findPwdForm";
 			});
-			
 		});
-		
-		
 	</script>
 </head>
 <body>
@@ -72,7 +70,7 @@
 	<c:when test="${loginMember eq null}">
 		<form id="login_frm" name="login_frm">
 			<div>
-				<span>아이디</span>
+				<span>로그인</span>
 				<input type="text" id="member_id" name="member_id" />
 			</div>
 			<div>
@@ -89,7 +87,7 @@
 		</form>
 	</c:when>
 	<c:otherwise>
-		<span>이미 로그인된 사용자입니다</span>
+		<span>이미 로그인 된 사용자 입니다.</span>
 		<input type="button" id="back_btn" name="back_btn" value="뒤로가기" />
 		<input type="button" id="logout_btn" name="logout_btn" value="로그아웃" />
 	</c:otherwise>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.admin.product.dao.ProductManageDAO">
+    <resultMap id="productManage" type="productManage">
+        <id property="product_no" column="product_no" />
+        <result property="product_name" column="product_name" />
+        <result property="product_price" column="product_price" />
+        <result property="product_list_img" column="product_list_img" />
+        <result property="product_content" column="product_content" javaType="java.lang.String" />
+        <collection property="images" column="product_no" ofType="image" javaType="java.util.ArrayList" select="com.spring.admin.product.dao.ImageDAO.imageList">
+        </collection>
+    </resultMap>
+
+    <!-- 게시판 리스트 조회(페이징 처리와 검색 처리) -->
+    <select id="productManageList" parameterType="productManage" resultType="productManage">
+        select
+        product_no, product_name, product_price
+        from PRODUCT
+        <where>
+            <if test="search=='product_name'">
+                <![CDATA[product_name '%'||#{keyword}|| '%']]>
+            </if>
+        </where>
+    </select>
+
+    <!-- 게시판의 글번호 구하기(시퀀스 값) -->
+    <select id="productManageNumber" resultType="int">
+        select PRODUCT_SEQ.nextval from dual
+    </select>
+
+    <!-- 게시물 등록 1 -->
+    <insert id="productManageInsert" parameterType="productManage">
+        insert into product(product_no, product_name, PRODUCT_PRICE, PRODUCT_LIST_IMG, PRODUCT_CONTENT_IMG, CATEGORY_NO, product_content)
+        values(#{product_no}, #{product_name}, 30000, #{product_list_img}, 'ssfdasgr', 1, #{product_content})
+    </insert>
+
+    <!-- 게시물 등록 2 -->
+    <insert id="productManageDetailInsert" parameterType="productDetail">
+        <selectKey keyProperty="product_detail_no" resultType="int" order="BEFORE">
+            SELECT product_detail_seq.nextval from dual
+        </selectKey>
+        insert into PRODUCT_DETAIL(product_detail_no, product_detail_stock, product_detail_color, product_detail_size, product_detail_writeday, product_no)
+        values(#{product_detail_no}, #{product_detail_stock}, #{product_detail_color}, #{product_detail_size}, sysdate, #{product_no})
+    </insert>
+
+    <!-- 상세 페이지를 위한 게시물 조회 -->
+    <select id="productManageDetail" parameterType="int" resultMap="productManage">
+        select product_no, product_name, PRODUCT_CONTENT
+        from PRODUCT where product_no = #{product_no}
+    </select>
+</mapper>

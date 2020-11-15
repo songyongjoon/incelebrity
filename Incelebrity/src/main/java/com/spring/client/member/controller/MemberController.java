@@ -23,34 +23,35 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 	private MemberService memberService;
 
-	@RequestMapping(value = "/loginForm")
-	public String loginForm(@ModelAttribute("data") MemberVO memberVO) {
-		log.info("loginForm �샇異� �꽦怨�");
+	@RequestMapping(value="/loginForm")
+	public String loginForm(@ModelAttribute("data") MemberVO memberVO){
+		log.info("loginForm 호출 성공");
 
 		return "member/loginForm";
 	}
 
-	@RequestMapping(value = "/memberLogin")
+	@RequestMapping(value="/memberLogin")
 	@ResponseBody
-	public String login(@ModelAttribute("data") MemberVO memberVO, HttpServletRequest req) {
-		log.info("memberLogin �샇異� �꽦怨�");
+	public String login(@ModelAttribute("data") MemberVO memberVO, HttpServletRequest req){
+		log.info("memberLogin 호출 성공");
 
 		HttpSession session = req.getSession();
-		int memberIdCheck = 0;
 		int loginCheck = 0;
 		String result = "";
 
-		memberIdCheck = memberService.getUserOne(memberVO);
+		memberVO = memberService.getUserOne(memberVO);
 
-		if (memberIdCheck == 0) {
+		if(memberVO == null){
 			result = "fail";
-		} else if (memberIdCheck == 1) {
+		}
+		else if(memberVO != null){
 			loginCheck = memberService.memberLogin(memberVO);
 
-			if (loginCheck == 1) {
+			if(loginCheck == 1){
 				session.setAttribute("loginMember", memberVO);
 				result = "success";
-			} else {
+			}
+			else{
 				result = "fail";
 			}
 		}
@@ -58,44 +59,46 @@ public class MemberController {
 		return result;
 	}
 
-	@RequestMapping(value = "/signUpForm")
+	@RequestMapping(value="/signUpForm")
 	public String signUpForm(@ModelAttribute("data") MemberVO memberVO) {
-		log.info("signUpForm �샇異� �꽦怨�");
+		log.info("signUpForm 호출 성공");
 
 		return "member/signUpForm";
 	}
 
-	@RequestMapping(value = "/memberSignUp")
-	public String signUp(@ModelAttribute("data") MemberVO memberVO, Model model) {
-		log.info("memberSignUp �샇異� �꽦怨�");
+	@RequestMapping(value="/memberSignUp")
+	public String signUp(@ModelAttribute("data") MemberVO memberVO) {
+		log.info("memberSignUp 호출 성공");
 
 		String url = "";
 		int result = 0;
 
 		result = memberService.memberSignUp(memberVO);
 
-		if (result == 1) {
-			url = "/member/loginForm"; // �굹以묒뿉 �쉶�썝媛��엯 �셿猷� �럹�씠吏��룄 異붽� �븷 寃�
-		} else {
+		if(result == 1){
+			url = "/member/loginForm"; //나중에 회원가입 완료 페이지도 추가 할 것
+		}
+		else{
 			url = "/member/memberSignUp";
 		}
 
 		return "redirect:" + url;
 	}
 
-	@RequestMapping(value = "/getUserOne", method = RequestMethod.POST)
+	@RequestMapping(value="/getUserOne", method = RequestMethod.POST)
 	@ResponseBody
-	public String getUserOne(@ModelAttribute("data") MemberVO memberVO) {
-		log.info("getUserOne �샇異� �꽦怨�");
+	public String getUserOne(@ModelAttribute("data") MemberVO memberVO){
+		log.info("getUserOne 호출 성공");
 
-		int value = 0;
+		MemberVO value = null;
 		String result = "";
 
 		value = memberService.getUserOne(memberVO);
 
-		if (value == 1) {
+		if(value != null) {
 			result = "fail";
-		} else {
+		}
+		else{
 			result = "success";
 		}
 
@@ -104,8 +107,8 @@ public class MemberController {
 		return result;
 	}
 
-	@RequestMapping(value = "/memberLogout")
-	public String memberLogout(HttpSession session) {
+	@RequestMapping(value="/memberLogout")
+	public String memberLogout(HttpSession session){
 		session.invalidate();
 
 		return "member/loginForm";

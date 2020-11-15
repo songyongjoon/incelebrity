@@ -250,7 +250,7 @@
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<td><input type="date" id="member_birth"></td>
+						<td><input type="date" id="member_birth" name="member_birth"></td>
 					</tr>
 				</tbody>
 			</table>

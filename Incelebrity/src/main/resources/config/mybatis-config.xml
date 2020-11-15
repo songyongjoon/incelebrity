@@ -8,7 +8,11 @@
 		<typeAlias type="com.spring.client.member.vo.MemberVO" alias="member" />
 		<typeAlias type="com.spring.admin.member.vo.AdminMemberVO" alias="adminMember" />
 		<typeAlias type="com.spring.client.product.vo.ProductVO" alias="product"/>
+		<typeAlias type="com.spring.common.vo.ProductDetailVO" alias="productDetail"/>
 		<typeAlias type="com.spring.client.notice.vo.NoticeVO" alias="notice"/>
 		<typeAlias type="com.spring.client.qna.vo.QnaVO" alias="qna"/>
+		<typeAlias type="com.spring.admin.product.vo.ProductManageVO" alias="productManage"/>
+		<typeAlias type="com.spring.common.vo.ImageVO" alias="image"/>
+		<typeAlias type="com.spring.client.mypage.vo.MyPageVO" alias="myPage"/>
 	</typeAliases>
 </configuration>

@@ -3,8 +3,8 @@ package com.spring.client.mypage.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.client.member.vo.MemberVO;
 import com.spring.client.mypage.dao.MyPageDAO;
+import com.spring.client.mypage.vo.MyPageVO;
 
 import lombok.Setter;
 
@@ -15,38 +15,38 @@ public class MyPageServiceImpl implements MyPageService {
 	private MyPageDAO myPageDAO;
 
 	@Override
-	public MemberVO myInfo(MemberVO memberVO) {
-		MemberVO detail = null;
-		detail = myPageDAO.myInfo(memberVO);
+	public MyPageVO myInfo(MyPageVO vo) {
+		MyPageVO detail = null;
+		detail = myPageDAO.myInfo(vo);
 
 		return detail;
 	}
 
 	@Override
-	public int pwdConfirm(MemberVO memberVO) {
+	public int pwdConfirm(MyPageVO vo) {
 		int result = 0;
-		result = myPageDAO.pwdConfirm(memberVO);
+		result = myPageDAO.pwdConfirm(vo);
 		return result;
 	}
 
 	@Override
-	public MemberVO myInfoUpdateForm(MemberVO memberVO) {
-		MemberVO detail = null;
-		detail = myPageDAO.myInfo(memberVO);
+	public MyPageVO myInfoUpdateForm(MyPageVO vo) {
+		MyPageVO detail = null;
+		detail = myPageDAO.myInfo(vo);
 
 		return detail;
 	}
 
 	@Override
-	public int myInfoUpdate(MemberVO memberVO) {
+	public int myInfoUpdate(MyPageVO vo) {
 		int result = 0;
-		result = myPageDAO.myInfoUpdate(memberVO);
+		result = myPageDAO.myInfoUpdate(vo);
 		return result;
 	}
 	
-	public int quitUpdate(MemberVO memberVO) {
+	public int quitUpdate(MyPageVO vo) {
 		int result = 0;
-		result = myPageDAO.quitUpdate(memberVO);
+		result = myPageDAO.quitUpdate(vo);
 		return result;
 	}
 

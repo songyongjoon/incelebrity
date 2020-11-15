@@ -14,8 +14,8 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO memberDAO;
 
 	@Override
-	public int getUserOne(MemberVO memberVO) {
-		int result = 0;
+	public MemberVO getUserOne(MemberVO memberVO) {
+		MemberVO result = null;
 		result = memberDAO.getUserOne(memberVO);
 
 		return result;

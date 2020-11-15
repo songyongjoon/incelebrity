@@ -1,21 +1,21 @@
 package com.spring.client.mypage.service;
 
-import com.spring.client.member.vo.MemberVO;
+import com.spring.client.mypage.vo.MyPageVO;
 
 public interface MyPageService {
 
 	// 내정보 조회
-	public MemberVO myInfo(MemberVO memberVO);
+	public MyPageVO myInfo(MyPageVO vo);
 
 	// 비밀번호 조회
-	public int pwdConfirm(MemberVO memberVO);
+	public int pwdConfirm(MyPageVO vo);
 
 	// 업데이트폼
-	public MemberVO myInfoUpdateForm(MemberVO memberVO);
+	public MyPageVO myInfoUpdateForm(MyPageVO vo);
 
 	// 업데이트
-	public int myInfoUpdate(MemberVO memberVO);
+	public int myInfoUpdate(MyPageVO vo);
 
 	// 탈퇴
-	public int quitUpdate(MemberVO memberVO);
+	public int quitUpdate(MyPageVO vo);
 }
