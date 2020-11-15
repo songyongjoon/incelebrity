@@ -55,7 +55,7 @@
         <div class="col-xs-6 col-lg-4">
             <h2>게시판 관리</h2>
             <p>처음으로 만든 게시판. 입력/수정/삭제 및 댓글 작성까지 처리 완료.</p>
-            <p><a class="btn btn-default" href="/board/boardList" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-default" href="/notice/noticeList" role="button">View details &raquo;</a></p>
         </div><!--/.col-xs-6.col-lg-4-->
         <div class="col-xs-6 col-lg-4">
             <h2>갤러리 게시판 관리</h2>

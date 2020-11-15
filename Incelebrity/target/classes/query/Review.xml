@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.client.review.dao.ReviewDao">
+	<!-- 총 게시글 갯수 출력 -->
+<select id="countBoard" resultType="int">
+	SELECT COUNT(*) FROM review
+</select>
+
+<!-- 페이징 처리 후 게시글 조회 -->
+<select id="selectBoard" resultType="review">
+	SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM review 
+						ORDER BY review_no DESC 
+						) A
+				)
+	WHERE RN BETWEEN #{start} AND #{end}
+</select>
+
+<!-- 리뷰 상세 -->
+<select id="reviewDetail" parameterType="review" resultType="review">
+	select review_no, orders_no, review_title, review_point, review_content, to_char(review_writeday,'yyyy-mm-dd') as review_writeday, review_name
+	from review where review_no=#{review_no}
+</select>
+
+<!-- 리뷰 등록  -->
+ 	<insert id="reviewInsert" parameterType="review">
+		insert into review(review_no, review_title, review_name, review_point, review_content,review_writeday
+		, orders_no, product_no, member_no)
+		values(review_seq.nextval, #{review_title}, #{review_name}, #{review_point}, #{review_content},sysdate
+		, 2,2,2)
+	</insert> 
+	
+<!-- 리뷰 삭제 -->
+	<delete id="reviewDelete" parameterType="review">
+		delete from review where review_no = #{review_no}
+	</delete>
+
+<!-- 리뷰 수정 -->
+<update id="reviewUpdate" parameterType="review">
+	update review set review_title = #{review_title}
+						, review_point = #{review_point}
+						, review_content = #{review_content}
+						, review_writeday = sysdate
+						where review_no = #{review_no}
+</update>
+
+</mapper>
