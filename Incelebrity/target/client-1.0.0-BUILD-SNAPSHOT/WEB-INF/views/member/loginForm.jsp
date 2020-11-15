@@ -27,28 +27,32 @@
 			});
 
 			$("#login_btn").click(function(){
-				$.ajax({
-					url : "/member/memberLogin",
-					method : "post",
-					data : $("#login_frm").serialize(),
-					dataType : "text",
-					error : function(){
-						alert("로그인 시스템 오류입니다. 관리자에게 문의하세요");
-					},
-					success : function(result){
-						if(result == "success"){
-							location.href = "../../..";
+				if(!chkData("#member_id", "아이디를")) return;
+				else if(!chkData("#member_passwd", "비밀번호를")) return;
+				else{
+					$.ajax({
+						url : "/member/memberLogin",
+						method : "post",
+						data : $("#login_frm").serialize(),
+						dataType : "text",
+						error : function(){
+							alert("로그인 시스템 오류입니다. 관리자에게 문의하세요");
+						},
+						success : function(result){
+							if(result == "success"){
+								location.href = "../../..";
+							}
+							else if(result == "fail"){
+								var chkTag = "<span></span>";
+								$("#chk_space").append(chkTag).attr({"id" : "id_msg"});
+								$("#id_msg").html("가입하지 않은 아이디거나 비밀번호가 틀렸습니다.").css("color", "red");
+							}
+							else{
+								alert("로그인 오류입니다. 관리자에게 문의하세요");
+							}
 						}
-						else if(result == "fail"){
-							var chkTag = "<span></span>";
-							$("#chk_space").append(chkTag).attr({"id" : "id_msg"});
-							$("#id_msg").html("가입하지 않은 아이디거나 비밀번호가 틀렸습니다.").css("color", "red");
-						}
-						else{
-							alert("로그인 오류입니다. 관리자에게 문의하세요");
-						}
-					}
-				});
+					});
+				}
 			});
 
 			$("#logout_btn").click(function(){

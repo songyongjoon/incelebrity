@@ -40,8 +40,9 @@ public class ProductManageServiceImpl implements ProductManageService {
         int result2 = 0;
         ImageVO ivo = null;
 
-        pmvo.setProduct_list_img(FileUploadUtil.fileUpload(pmvo.getList_images(), "listImg"));
-        List<String> fileName = FileUploadUtil.multipleFileUpload(pmvo.getImages().get(0).getFiles(), "contentImg");
+        pmvo.setProduct_list_img(FileUploadUtil.fileUpload(pmvo.getList_image(), "listImg"));
+        pmvo.setProduct_content_img(FileUploadUtil.fileUpload(pmvo.getContent_image(), "contentImg"));
+        List<String> fileName = FileUploadUtil.multipleFileUpload(pmvo.getImages().get(0).getFiles(), "images");
 
         if(!fileName.isEmpty()){
             pmvo.setProduct_no(productManageDAO.productManageNumber());
