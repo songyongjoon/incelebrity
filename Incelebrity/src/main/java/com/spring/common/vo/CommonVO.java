@@ -4,23 +4,22 @@ import lombok.Data;
 
 @Data
 public class CommonVO {
-	private String page; // ������ ��ȣ
-	private String pageSize; // �������� �����ִ� �� ��
-	private String start_row; // ���� ���ڵ� ��ȣ
-	private String end_row; // ���� ���ڵ� ��ȣ
+	private String page; // 페이지 번호
+	private String pageSize; // 페이지에 보여주는 줄 수
+	private String start_row; // 시작 레코드 번호
+	private String end_row; // 종료 레코드 번호
 
-	// ���ǰ˻��� ����� �ʵ�
+	// 조건검색시 사용할 필드
 	private String search = "";
 	private String keyword = "";
+
+	private int pageNum = 0;		//�럹�씠吏�踰덊샇
+	private int amount = 0;			//�럹�씠吏��뿉 蹂댁뿬以� �뜲�씠�꽣�닔
 	
-<<<<<<< HEAD
-	private int pageNum = 0;		//페이지번호
-	private int amount = 0;			//페이지에 보여줄 데이터수
-	
-	// 현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
+	// �쁽�옱�럹�씠吏�, �떆�옉�럹�씠吏�, �걹�럹�씠吏�, 寃뚯떆湲� 珥� 媛��닔, �럹�씠吏��떦 湲� 媛��닔, 留덉�留됲럹�씠吏�, SQL荑쇰━�뿉 �벝 start, end
     private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
     private int cntPage = 5;
-    //검색 단어 필드
+    //寃��깋 �떒�뼱 �븘�뱶
     private String profitStart = "";
     private String profitEnd = "";
     private int profitTotal;
@@ -35,11 +34,11 @@ public class CommonVO {
        calcStartEndPage(getNowPage(), cntPage);
        calcStartEnd(getNowPage(), getCntPerPage());
     }
-    // 제일 마지막 페이지 계산
+    // �젣�씪 留덉�留� �럹�씠吏� 怨꾩궛
     public void calcLastPage(int total, int cntPerPage) {
        setLastPage((int) Math.ceil((double)total / (double)cntPerPage));
     }
-    // 시작, 끝 페이지 계산
+    // �떆�옉, �걹 �럹�씠吏� 怨꾩궛
     public void calcStartEndPage(int nowPage, int cntPage) {
        setEndPage(((int)Math.ceil((double)nowPage / (double)cntPage)) * cntPage);
        if (getLastPage() < getEndPage()) {
@@ -50,19 +49,13 @@ public class CommonVO {
           setStartPage(1);
        }
     }
-    // DB 쿼리에서 사용할 start, end값 계산
+    // DB 荑쇰━�뿉�꽌 �궗�슜�븷 start, end媛� 怨꾩궛
     public void calcStartEnd(int nowPage, int cntPerPage) {
        setEnd(nowPage * cntPerPage);
        setStart(getEnd() - cntPerPage + 1);
     }
-=======
->>>>>>> branch 'master' of https://github.com/songyongjoon/incelebrity.git
 
-<<<<<<< HEAD
-}
-=======
-	// ��¥ �˻��� ����� �ʵ�
+	// 날짜 검색시 사용할 필드
 	private String start_date = "";
 	private String end_date = "";
 }
->>>>>>> branch 'master' of https://github.com/songyongjoon/incelebrity.git

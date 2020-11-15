@@ -1,13 +1,15 @@
 package com.spring.client.product.service;
 
-import com.spring.client.product.dao.ProductDAO;
-import com.spring.common.vo.ProductDetailVO;
-import com.spring.client.product.vo.ProductVO;
-import lombok.Setter;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.spring.client.product.dao.ProductDAO;
+import com.spring.client.product.vo.ProductVO;
+import com.spring.common.vo.ProductDetailVO;
+
+import lombok.Setter;
 
 @Service
 public class ProductServiceImpl implements ProductService {

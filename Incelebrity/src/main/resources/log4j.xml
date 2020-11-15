@@ -16,13 +16,6 @@
 	<logger name="com.spring.client">
 		<level value="info" />
 	</logger>
-<<<<<<< HEAD
-	
-	<logger name="com.spring.admin">
-		<level value="info" />
-	</logger>
-	
-=======
 
 	<logger name="com.spring.admin">
 		<level value="info" />
@@ -32,7 +25,6 @@
 		<level value="info" />
 	</logger>
 
->>>>>>> branch 'master' of https://github.com/songyongjoon/teamProject.git
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
