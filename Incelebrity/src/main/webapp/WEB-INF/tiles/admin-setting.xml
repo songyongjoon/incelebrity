@@ -5,6 +5,7 @@
   
 <tiles-definitions>
 	<definition name="main" template="/WEB-INF/views/main.jsp">
+<<<<<<< HEAD
 		<put-attribute name="title" value="관리자 페이지" />
 	</definition>
 	
@@ -24,3 +25,15 @@
 	</definition>
 	 -->
 </tiles-definitions>
+=======
+		<put-attribute name="title" value="관리자 페이지"/>
+	</definition>
+	
+	<definition name="basic" template="/WEB-INF/views/template/admin/contentLayout.jsp">
+		<put-attribute name="title" value="나의 첫 스프링 사이트"/>
+		<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/template/admin/footer.jsp"/>
+	</definition>
+</tiles-definitions>
+>>>>>>> branch 'master' of https://github.com/songyongjoon/teamProject.git
