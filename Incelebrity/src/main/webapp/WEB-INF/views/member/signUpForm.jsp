@@ -235,7 +235,7 @@
 		<tr>
 			<td>연락처</td>
 			<td>
-				<select id="member_phone1" name="member_phone1" />
+				<select id="member_phone1" name="member_phone1">
 				<option value="010" selected="selected">010</option>
 				<option value="011">011</option>
 				<option value="016">016</option>
@@ -268,7 +268,7 @@
 		</tr>
 		<tr>
 			<td>생일</td>
-			<td><input type="text" id="member_birth" name="member_birth" /></td>
+			<td><input type="date" id="member_birth" name="member_birth" /></td>
 		</tr>
 		<tr>
 			<td>비밀번호 힌트</td>

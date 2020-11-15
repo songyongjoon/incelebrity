@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.client.findPwd.dao.FindPwdDAO">
+
+<!-- 아이디 조회해서 비밀번호질문,힌트,비밀번호 불러오기 -->
+	<select id="findPwd" parameterType="member" resultType="member">
+		select member_passwd from member where member_id = #{member_id} 
+		and	member_passhint = #{member_passhint} 
+		and member_passanswer = #{member_passanswer}
+	</select>
+</mapper>
